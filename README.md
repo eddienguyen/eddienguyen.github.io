@@ -1,3 +1,27 @@
+This is the source code for my [Github Pages](https://eddienguyen.github.io) .
+
+How to use ?
+
+- switch to `portfolio` branch.
+
+- You'll see the `homepage`, `deploy` section in `package.json` has been configured for deploying to GitHub user page with `gh-pages`.
+
+- after editing, make sure the site run smoothly, error-free in the localhost first.
+
+- then add-commit-push the project to `origin portfolio` . 
+
+- run `npm run deploy` for deployment. The static html/css/js will be updated to `master` branch and will be published to GitHub Pages in no-time.
+
+- **REMEMBER**: Do not push the source code to `master` branch ! You'll fuck up the whole thing !
+
+I've done this by followed the tutorial on [create-react-app's document](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#github-pages)
+
+Below is the instruction built-in with `create-react-app` package.
+
+
+---
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
