@@ -2,7 +2,7 @@ import { injectGlobal } from 'styled-components';
 
 // eslint-disable-next-line
 injectGlobal`
-    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900');
 
     body{
         margin: 0;
