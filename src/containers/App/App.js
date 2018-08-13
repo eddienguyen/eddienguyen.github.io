@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import 'App.css';
 
 import { Background } from './App.style';
 class App extends Component {

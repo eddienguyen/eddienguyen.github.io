@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import media from 'theme/media';
+import { white } from 'theme/variables';
+
 export const ImageButton = styled.div`
     cursor: pointer;
     overflow: hidden;
@@ -14,8 +17,13 @@ export const ImageButton = styled.div`
     }
 `;
 
-export const Index = styled.div`
-    position: absolute;
-    left: 0;
-    bottom: 0;
+export const Header = styled.div`
+    text-align: center;
+    color: ${white};
+    ${media.tablet`
+
+    `};
+    ${media.phone`
+        font-size: 1em;
+    `};
 `;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Header from 'components/Header/Header';
 import MoreIntro from 'components/MoreIntro/MoreIntro';
+import Features from '../../components/Features/Features';
 
 class Home extends Component {
 
@@ -13,6 +14,7 @@ class Home extends Component {
             <div>
                 <Header />
                 <MoreIntro />
+                <Features />
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import styled, {css} from 'styled-components';
+import media from './media';
 
 
 // - The below styled 'Div' will be use for inheritance of next components(Container, Relative, Flex...)
@@ -11,9 +12,22 @@ export const Div = styled.div`
     `};
 `;
 
-//export Container
+// export Container
+// order: larger size is put above smaller size 
 export const Container = styled(Div)`
     padding: 30px 120px 0 120px;
+    ${media.large`
+        padding: 30px 120px 0 120px;
+    `};
+    ${media.desktop`
+        padding: 30px 120px 0 120px;
+    `};
+    ${media.tablet`
+        padding: 15px 30px 0 30px;
+    `};
+    ${media.phone`
+        padding: 15px 10px 0 10px;
+    `};
 `;
 
 export const Relative = styled(Div)`

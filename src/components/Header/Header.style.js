@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { black } from 'theme/variables';
+import media from 'theme/media';
 
 export const Background = styled.div`
     position: fixed;
@@ -14,6 +15,11 @@ export const Background = styled.div`
     width: 100vw;
     height: 100vh;
     z-index: -99;
+
+    ${media.phone`
+        background-size: 100%;
+        opacity: 0.4;
+    `};
 `;
 
 export const Intro = styled.div`
@@ -27,6 +33,11 @@ export const IntroBanner = styled.div`
     overflow: hidden;
     align-items: center;
     font-size: 1.5em;
+
+    ${media.phone `
+        font-size: 1em;
+        text-align: center;
+    `};
 `;
 
 export const Image = styled.img`
