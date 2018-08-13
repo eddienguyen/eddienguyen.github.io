@@ -1,7 +1,9 @@
 {
-  "main.js": "static/js/main.5c683b9a.js",
-  "main.js.map": "static/js/main.5c683b9a.js.map",
+  "main.css": "static/css/main.15a47223.css",
+  "main.css.map": "static/css/main.15a47223.css.map",
+  "main.js": "static/js/main.9ec7f8c6.js",
+  "main.js.map": "static/js/main.9ec7f8c6.js.map",
   "static\\media\\Ava-portrait.jpg": "static/media/Ava-portrait.c60b4b78.jpg",
-  "static\\media\\ProfilePage.png": "static/media/ProfilePage.1a126c9b.png",
+  "static\\media\\MainPage.png": "static/media/MainPage.61f414d1.png",
   "static\\media\\ProfilePage_thumbnail.png": "static/media/ProfilePage_thumbnail.9456205d.png"
 }
