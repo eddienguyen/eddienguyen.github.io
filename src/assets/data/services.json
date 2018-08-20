@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "imgSrc": "1.jpg",
+            "label": "Web Development",
+            "content": "MERN Stack"
+        },
+        {
+            "imgSrc": "2.jpg",
+            "label": "Presentation",
+            "content": "Introduction, Pitching,..."
+        },
+        {
+            "imgSrc": "3.jpg",
+            "label": "Game Development",
+            "content": "with Cocos2dx && Unity"
+        },
+        {
+            "imgSrc": "4.jpg",
+            "label": "Teamwork",
+            "content": "Agile/SCRUM stack"
+        },
+        {
+            "imgSrc": "5.jpg",
+            "label": "Web Design",
+            "content": "Responsive web and front-end development"
+        },
+        {
+            "imgSrc": "6.jpg",
+            "label": "Illustration",
+            "content": "Logo and brand design"
+        }
+    ]
+}

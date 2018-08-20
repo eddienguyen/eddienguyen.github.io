@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import media from 'theme/media';
-import { white } from 'theme/variables';
+import { white, red } from 'theme/variables';
 
 export const ImageButton = styled.div`
     cursor: pointer;
@@ -17,9 +17,10 @@ export const ImageButton = styled.div`
     }
 `;
 
-export const Header = styled.div`
+export const Header = styled.h1`
     text-align: center;
-    color: ${white};
+    margin-top: 0;
+    color: ${red};
     ${media.tablet`
 
     `};

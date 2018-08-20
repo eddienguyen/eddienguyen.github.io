@@ -14,8 +14,9 @@ class Projects extends Component {
         return (
             <Container>
                 <Header>
-                    <h1>PROJECTS</h1>
+                    PROJECTS
                 </Header>
+
                 <Flex column justify='center' align='center' marginBottom='100px'>
                     <h3><A href='https://leapthew3-webapp.herokuapp.com/' target='_blank'>Leap The World-wide-web</A></h3>
 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Header from 'components/Header/Header';
 import MoreIntro from 'components/MoreIntro/MoreIntro';
 import Features from '../../components/Features/Features';
+import Services from 'components/Services/Services';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 class Home extends Component {
 
@@ -12,9 +14,12 @@ class Home extends Component {
 
         return (
             <div>
-                <Header />
-                <MoreIntro />
-                <Features />
+                <ParallaxProvider>
+                    <Header />
+                    <MoreIntro />
+                    <Features />
+                    <Services />
+                </ParallaxProvider>
             </div>
         );
     }

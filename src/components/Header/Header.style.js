@@ -20,6 +20,11 @@ export const Background = styled.div`
         background-size: 100%;
         opacity: 0.4;
     `};
+
+    ${media.tablet`
+        background-size: 100%;
+        opacity: 0.4;
+    `};
 `;
 
 export const Intro = styled.div`
@@ -38,6 +43,11 @@ export const IntroBanner = styled.div`
         font-size: 1em;
         text-align: center;
     `};
+
+    ${media.tablet`
+        font-size: 1em;
+        text-align: center;
+    `}
 `;
 
 export const Image = styled.img`

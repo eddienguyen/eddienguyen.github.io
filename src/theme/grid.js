@@ -1,15 +1,48 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import media from './media';
-
-
+import { height } from 'window-size';
+import { color, black } from 'theme/variables';
 // - The below styled 'Div' will be use for inheritance of next components(Container, Relative, Flex...)
 //   reference: https://www.styled-components.com/docs/basics#styling-any-components
 // - Customize function: if 'marginBottom' is defined, add 'margin-bottom' 
 //   with 'marginBottom' as value to this Div
 export const Div = styled.div`
+    overflow: hidden;
+    
+    ${({ marginTop }) => marginTop && css`
+        margin-top: ${marginTop};
+    `};
+
+    ${({ marginRight }) => marginRight && css`
+        margin-right: ${marginRight};
+    `};
+
     ${({ marginBottom }) => marginBottom && css`
         margin-bottom: ${marginBottom};
     `};
+
+    ${({ marginLeft }) => marginLeft && css`
+        margin-left: ${marginLeft};
+    `};
+
+    ${({ margin }) => margin && css`
+        margin: ${margin};
+    `}
+
+    ${({ height }) => height && css`
+        height: ${height};
+    `};
+
+    ${({ width }) => width && css`
+        width: ${width};
+    `};
+
+    background-color: ${props => color[props.bgColor]};
+    color: ${props => color[props.fontColor]};
+
+    ${({ floating }) => floating && css`
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    `}
 `;
 
 // export Container
@@ -42,6 +75,7 @@ export const Relative = styled(Div)`
 export const Flex = styled(Div)`
     display: flex;
     flex-direction: ${props => props.column ? 'column' : 'row'}
+
     ${({ justify }) => justify && css`
         justify-content: ${justify};
     `};
@@ -50,5 +84,12 @@ export const Flex = styled(Div)`
         align-items: ${align};
     `};
 
+    ${media.phone`
+        flex-direction: column;
+    `}
+
 `;
 
+export const Section = styled.section`
+    background-color: ${black};
+`;

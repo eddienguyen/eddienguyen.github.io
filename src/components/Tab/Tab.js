@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
+import { ListItem } from './Tab.style';
 
 // Tab will display this tab's label, handles click events and let the Tabs component
 // knows which Tab has been clicked.
 
 class Tab extends Component {
-    static PropTypes = {
+    static propTypes = {
         activeTab: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired
@@ -33,12 +34,12 @@ class Tab extends Component {
         };
 
         return (
-            <li
+            <ListItem
                 className={className}
                 onClick={onClick}
             >
                 {label}
-            </li>
+            </ListItem>
         );
     }
 }

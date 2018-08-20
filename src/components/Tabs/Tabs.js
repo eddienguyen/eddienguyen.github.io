@@ -38,7 +38,7 @@ class Tabs extends Component {
 
         return (
             <div className='tabs'>
-                <TabList>
+                <TabList style={{borderBottom: '0px'}}>
 
                     {children.map((child) => {
                         const { label } = child.props;

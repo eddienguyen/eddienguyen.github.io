@@ -6676,6 +6676,12 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
+react-scroll-parallax@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-1.3.5.tgz#14a799f4773922c7feb5e31dc8a2acdb783e49d6"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-waypoint@^8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-8.0.3.tgz#860db860d3301c6f449800f7a330856028730af5"

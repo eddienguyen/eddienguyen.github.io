@@ -3,12 +3,14 @@ import { hot } from 'react-hot-loader';
 import 'App.css';
 
 import { Background } from './App.style';
+import NavBar from '../../components/NavBar/NavBar';
 class App extends Component {
   render() {
     return (
       <div>
         <Background />
-          {this.props.children}
+        <NavBar />
+        {this.props.children}
       </div>
     );
   }
