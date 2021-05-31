@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Tab from 'components/Tab/Tab';
 import { TabList } from './Tabs.style';

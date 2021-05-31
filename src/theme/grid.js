@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import media from './media';
-import { height } from 'window-size';
 import { color, black } from 'theme/variables';
 // - The below styled 'Div' will be use for inheritance of next components(Container, Relative, Flex...)
 //   reference: https://www.styled-components.com/docs/basics#styling-any-components

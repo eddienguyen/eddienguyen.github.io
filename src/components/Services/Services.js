@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Section, Container } from 'theme/grid';
-import { ParallaxBanner } from 'react-scroll-parallax';
 import data from 'assets/data/services.json';
 import { Div } from 'theme/grid';
 

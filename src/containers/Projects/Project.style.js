@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import media from 'theme/media';
-import { white, red } from 'theme/variables';
+import { red } from 'theme/variables';
 
 export const ImageButton = styled.div`
     cursor: pointer;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Flex } from 'theme/grid';
 
-import { ImageResponsive, ImageResolution } from './ViewCard.style';
+import { ImageResponsive } from './ViewCard.style';
 import { ParallaxBanner } from 'react-scroll-parallax';
 // import 6 ViewCards
 // with props: label & content
@@ -22,13 +22,13 @@ class ViewCard extends Component {
     }
   }
   render() {
-    const {
-      props: {
-        label,
-        content,
-        icon
-      }
-    } = this;
+    // const {
+    //   props: {
+    // label,
+    // content,
+    // icon
+    //   }
+    // } = this;
 
     return (
       <Flex height='100%' bgColor='white' fontColor='black' floating>

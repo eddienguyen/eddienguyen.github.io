@@ -5,8 +5,6 @@ import { FeaturesContainer } from './Features.style';
 
 import Tabs from 'components/Tabs/Tabs';
 
-import ViewCard from 'components/ViewCard/ViewCard';
-
 class Features extends Component {
     // tabs: Introduction, about, features
     // each tab content holds: img (parallax) with h4 as title && paragraph, all in row

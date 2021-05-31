@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Div, Flex } from 'theme/grid';
+import { Flex } from 'theme/grid';
 import { color } from 'theme/variables';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,10 @@ export const ScrollingNav = styled(Flex)`
     justify-content: flex-end;
     align-items: center;
     padding: 30px 120px;
-    z-index: 100;
+    z-index: ${props => props.opacity === 1
+        ? 100
+        : -1
+    };
     width: 100%;
     border-bottom: solid ${color.lightBlue};
     background-color: ${color.black};

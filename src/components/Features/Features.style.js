@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { white } from 'theme/variables';
-import media from 'theme/media';
 import { Container } from 'theme/grid';
 
 export const Background = styled.div`
