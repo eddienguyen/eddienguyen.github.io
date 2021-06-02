@@ -1,9 +1,10 @@
-*{box-sizing: border-box};
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
-  
-};
+}
 
 .App {
   text-align: center;
@@ -30,8 +31,12 @@ body {
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .tab-list-item {
@@ -48,9 +53,11 @@ body {
   border-width: 1px 1px 0 1px;
 }
 
-.custom-bg img{width: 100vw}
+.custom-bg img {
+  width: 100vw;
+}
 
-.custom-bg{
+.custom-bg {
   overflow: hidden;
   filter: blur(5px);
 }
@@ -64,16 +71,63 @@ body {
 [class*="col-"] {
   float: left;
 }
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
+.col-1 {
+  width: 100%;
+  max-width: 8.33%;
+  flex: 0 0 8.33%;
+}
+.col-2 {
+  width: 100%;
+  max-width: 16.66%;
+  flex: 0 0 16.66%;
+}
+.col-3 {
+  width: 100%;
+  max-width: 25%;
+  flex: 0 0 25%;
+}
+.col-4 {
+  width: 100%;
+  max-width: 33.33%;
+  flex: 0 0 33.33%;
+}
+.col-5 {
+  width: 100%;
+  max-width: 41.66%;
+  flex: 0 0 41.66%;
+}
+.col-6 {
+  width: 100%;
+  max-width: 50%;
+  flex: 0 0 50%;
+}
+.col-7 {
+  width: 100%;
+  max-width: 58.33%;
+  flex: 0 0 58.33%;
+}
+.col-8 {
+  width: 100%;
+  max-width: 66.66%;
+  flex: 0 0 66.66%;
+}
+.col-9 {
+  width: 100%;
+  max-width: 75%;
+  flex: 0 0 75%;
+}
+.col-10 {
+  width: 100%;
+  max-width: 83.33%;
+  flex: 0 0 83.33%;
+}
+.col-11 {
+  width: 100%;
+  max-width: 91.66%;
+  flex: 0 0 91.66%;
+}
+.col-12 {
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+}

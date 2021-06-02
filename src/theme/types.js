@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { blue, lightBlue } from './variables';
 
-export const A = styled.a`
+export const Anchor = styled.a`
     color: ${lightBlue};
     text-decoration: none;
     position: relative;
@@ -12,7 +12,7 @@ export const A = styled.a`
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 10%;
+        height: 0%;
         width: 100%;
         background-color: ${lightBlue};
         z-index: -3;
@@ -22,5 +22,6 @@ export const A = styled.a`
     &:hover:after {
         height: 90%;
         background-color: ${blue};
+        z-index: -1;
     }
 `;

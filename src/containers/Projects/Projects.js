@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Container, Flex } from 'theme/grid';
-import { A } from 'theme/types';
+import { Anchor } from 'theme/types';
 import {
     ImageButton,
     Header
@@ -18,7 +18,7 @@ class Projects extends Component {
                 </Header>
 
                 <Flex column justify='center' align='center' marginBottom='100px'>
-                    <h3><A href='https://leapthew3-webapp.herokuapp.com/' target='_blank'>Leap The World-wide-web</A></h3>
+                    <h3><Anchor href='https://leapthew3-webapp.herokuapp.com/' target='_blank'>Leap The World-wide-web</Anchor></h3>
 
                     <ImageButton>
                         {/* <ImageParallax
@@ -29,7 +29,7 @@ class Projects extends Component {
                     </ImageButton>
                 </Flex>
                 <Flex column justify='center' align='center' marginBottom='100px'>
-                    <h3><A href='https://drive.google.com/file/d/1frwwbry_qbg_fP2cE4HMibmxYoJP3Iiw/view' target='_blank'>Smith-it Smith</A></h3>
+                    <h3><Anchor href='https://drive.google.com/file/d/1frwwbry_qbg_fP2cE4HMibmxYoJP3Iiw/view' target='_blank'>Smith-it Smith</Anchor></h3>
                     <iframe
                         src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Feddie.aquarious.96%2Fvideos%2F1461503510571314&width=560&show_text=false&height=400&appId"
                         title='SiS-video'
