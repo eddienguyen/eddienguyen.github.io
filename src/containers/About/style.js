@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import media from 'theme/media';
 import { red } from 'theme/variables';
 
 export const Title = styled.h1`

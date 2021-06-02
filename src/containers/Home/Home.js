@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from 'components/Header/Header';
 import MoreIntro from 'components/MoreIntro/MoreIntro';
-import Features from '../../components/Features/Features';
+import Features from 'components/Features/Features';
 import Services from 'components/Services/Services';
 import { ParallaxProvider } from 'react-scroll-parallax';
 

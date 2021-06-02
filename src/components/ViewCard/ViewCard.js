@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import { ParallaxBanner } from 'react-scroll-parallax';
 
 import PropTypes from 'prop-types';
 import { Flex } from 'theme/grid';
-
 import { ImageResponsive } from './ViewCard.style';
-import { ParallaxBanner } from 'react-scroll-parallax';
 // import 6 ViewCards
 // with props: label & content
 // grid style

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import { Section, Container } from 'theme/grid';
+import { Section, Container, Div } from 'theme/grid';
 import data from 'assets/data/services.json';
-import { Div } from 'theme/grid';
+import ServiceImage from 'components/ServiceImage/ServiceImage';
 
 import { Title } from './Services.style';
-import ServiceImage from '../ServiceImage/ServiceImage';
 
 class Services extends Component {
   state = {
