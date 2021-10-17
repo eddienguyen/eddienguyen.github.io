@@ -1,0 +1,3 @@
+[submodule "lighthouse-green-staging"]
+	path = lighthouse-green-staging
+	url = https://github.com/eddienguyen/lighthouse-green-staging
