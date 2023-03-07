@@ -13,8 +13,8 @@ class Services extends Component {
 
   createImages = (images) => {
     // map through all img
-    return images.map(img => 
-      <div className='col-4' >
+    return images.map((img, index) => 
+      <div className='col-4' key={index}>
         <ServiceImage key={img.imgSrc} image={img} />
       </div>
     );

@@ -21,7 +21,7 @@ class Header extends Component {
                 <Container>
                     <Intro>
                         <IntroBanner>
-                            <h1>
+                            <h1 className='text-3xl font-bold underline'>
                                 Hi,
                             <br />
                                 I'm <span style={{ color: lightBlue }}>Eddie</span>,

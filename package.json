@@ -103,6 +103,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "react-hot-loader": "^4.3.4"
+    "react-hot-loader": "^4.3.4",
+    "tailwindcss": "^3.2.7"
   }
 }
