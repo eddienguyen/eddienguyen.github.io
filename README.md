@@ -1,6 +1,6 @@
 This is the source code for my [Github Pages](https://eddienguyen.github.io) .
 
-How to use ?
+## How to use ?
 
 - switch to `portfolio` branch.
 
@@ -17,6 +17,20 @@ How to use ?
 I've done this by followed the tutorial on [create-react-app's document](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#github-pages)
 
 Below is the instruction built-in with `create-react-app` package.
+
+---
+## Hướng dẫn develop:
+
+1. Clone repo về máy cá nhân.
+2. Tách nhánh `portfolio` về máy của mình: `dev-myname`
+3. Develop tính năng mới.
+4. Khi đã develop xong: 
+- Tag version mới: `git tag {version-mới}`
+- Push tag version lên repo: `git push --follow-tags`
+5. Chuẩn bị pull request: 
+- Tăng version trong `package.json` và `readme.json`
+- Cập nhật `README.md` nếu có
+6. Tạo pull request vào `portfolio`.
 
 ---
 

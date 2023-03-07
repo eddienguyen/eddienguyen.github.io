@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Tab from 'components/Tab/Tab';
-import { TabList } from './Tabs.style';
+import { TabList, TabContent } from './Tabs.style';
 
 // Tabs will display a list of clickable Tab components,
 // this also holds a state for which tab is active, and the active tab's contents 
@@ -54,12 +54,12 @@ class Tabs extends Component {
                     })}
                 </TabList>
 
-                <div className='tab-content'>
+                <TabContent className='tab-content'>
                     {children.map((child) => {
                         if (child.props.label !== activeTab) return undefined;
                         return child.props.children;
                     })}
-                </div>
+                </TabContent>
             </div>
         );
     }

@@ -27,15 +27,9 @@ class Tab extends Component {
             }
         } = this;
 
-        let className = 'tab-list-item';
-
-        if (activeTab === label) {
-            className += ' tab-list-active';
-        };
-
         return (
             <ListItem
-                className={className}
+                className={`tab-list-item ${activeTab === label ? "tab-list-active" : ""}`}
                 onClick={onClick}
             >
                 {label}

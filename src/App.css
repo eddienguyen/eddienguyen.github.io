@@ -10,6 +10,27 @@ body {
   padding: 0;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  line-height: 1;
+}
+
+ol li,
+ul li {
+  line-height: 1.5em;
+}
+
 .App {
   text-align: center;
 }
