@@ -34,6 +34,27 @@ Below is the instruction built-in with `create-react-app` package.
 
 ---
 
+## 
+1. git commit -m 'v.1.0.1: Fixes' (or creat scripts in package.json as : ```"commit": "git commit -m"``` then run ``` npm run commit -- 'v.1.0.1: Fixes'```)
+2. npm version patch -no-git-tag-version --force //  increase my package.json version, not commit & not tag
+3. add all changes as normal, then I commit my changes and after this
+4. create the tag with the tag:commit gulp task:
+  - gulp tag:commit && git push origin master
+    ``` 
+    gulp.task('tag:commit', function () {
+      var version = pjson.version;
+      console.log(colors.bgWhite.black.bold(' \nTagging the version ' + version + ' \n'));
+      return run('git tag ' + version).exec();
+    });
+    ```
+  - git status 
+  - git commit -m "done"
+=> 
+  - git commit a message: "vx.x.x: message" 
+  - increase version in package.json
+  - change stuff and then it add .
+  - git tag with version on package.json
+  - git push
 ## Deploy other repository to gh-pages
 
 [GitHub Pages](https://pages.github.com/) is great for building a personal or project website. It'll default to _http://eddienguyen.github.io_, or you can even [use your own custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/) from services like [Namecheap](https://www.namecheap.com/), which I will write about in another post soon.

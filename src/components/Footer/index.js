@@ -28,7 +28,7 @@ class Footer extends Component {
                     justify={"space-between"}
                 >
                     <StyledList show={this.state.show}>
-                        <li>
+                        <li className='flex'>
                             <p>Version: {pkg.version}</p>
                         </li>
                         <li>
