@@ -55,6 +55,10 @@ Below is the instruction built-in with `create-react-app` package.
   - change stuff and then it add .
   - git tag with version on package.json
   - git push
+
+## Other usefull git commands:
+  - gitk: show gpu
+
 ## Deploy other repository to gh-pages
 
 [GitHub Pages](https://pages.github.com/) is great for building a personal or project website. It'll default to _http://eddienguyen.github.io_, or you can even [use your own custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/) from services like [Namecheap](https://www.namecheap.com/), which I will write about in another post soon.
