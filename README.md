@@ -58,6 +58,9 @@ Below is the instruction built-in with `create-react-app` package.
 
 ## steps:
   - adding changes to src
+  - ```terminal```: git add .
+  - ```terminal```: git commit -m "{a message follows conventional}"
+  - ```terminal```: npm version patch|minor|major
 
 ## Other usefull git commands:
   - gitk: show gpu
