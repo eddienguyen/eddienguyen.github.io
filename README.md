@@ -56,8 +56,13 @@ Below is the instruction built-in with `create-react-app` package.
   - git tag with version on package.json
   - git push
 
+## steps:
+  - adding changes to src
+
 ## Other usefull git commands:
   - gitk: show gpu
+  - git log --pretty="%s" (The “%s” corresponds to the commit title itself. You can modify the string to style your commit as you like. E.g: "- %s")
+  - If you want to go further, and save your changelog faster: instead of copying and pasting the result into a file, redirect it to your terminal by typing “git log --pretty="- %s" > CHANGELOG.md”
 
 ## Deploy other repository to gh-pages
 

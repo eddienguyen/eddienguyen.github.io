@@ -1,0 +1,26 @@
+#### 0.2.1 (2023-03-24)
+
+- 0.2.1
+- 0.3.0
+- 0.2.0
+- 0.1.1
+- v0.2.1: - update footer bg - added npm scripts for version tagging
+- v0.2.0: - add footer infomation - update readme
+- feat: add tailwindcss
+- [update] added lighthouse-green-staging
+- [update] deploy other repos guide
+- [update]: - switch back deployment branch from gh-page to master - re-optimize images
+- [update]: - upgrade gh-pages from 1.2 to 3.2 - move deployment branch from master to gh-page
+- [add]: - about page
+- [optimize] images
+- [update] navbar
+- add gtag.js
+- added services for desktop
+- responsive with styled-components
+- organized files && stuffs
+- fixing module paths
+- build Home page
+- wtf commit
+- rm index.css
+- 2nd commit
+- first commit
