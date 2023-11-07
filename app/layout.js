@@ -1,10 +1,6 @@
-"use client";
-
-import Background from "@/components/Background";
 import "../styles/global.scss";
-import TypeStyles from "@/styles/theme/types";
 import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
+import ClientMasterPage from "@/components/MasterPage";
 
 export const metadata = {
   title: "Eddie Ng's Portfolio",
@@ -19,11 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TypeStyles />
-        <Background />
-        <NavBar />
-        {children}
-        <Footer />
+        <ClientMasterPage>
+          <NavBar />
+          {children}
+        </ClientMasterPage>
       </body>
     </html>
   );
