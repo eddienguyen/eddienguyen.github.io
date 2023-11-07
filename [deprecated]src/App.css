@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind ultilities;
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  line-height: 1;
+}
+
+ol li,
+ul li {
+  line-height: 1.5em;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: white;
+  color: #00d8ff;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.custom-bg img {
+  width: 100vw;
+}
+
+.custom-bg {
+  overflow: hidden;
+  filter: blur(5px);
+}
+
+/* GRID SYSTEM */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  float: left;
+}
+.col-1 {
+  width: 100%;
+  max-width: 8.33%;
+  flex: 0 0 8.33%;
+}
+.col-2 {
+  width: 100%;
+  max-width: 16.66%;
+  flex: 0 0 16.66%;
+}
+.col-3 {
+  width: 100%;
+  max-width: 25%;
+  flex: 0 0 25%;
+}
+.col-4 {
+  width: 100%;
+  max-width: 33.33%;
+  flex: 0 0 33.33%;
+}
+.col-5 {
+  width: 100%;
+  max-width: 41.66%;
+  flex: 0 0 41.66%;
+}
+.col-6 {
+  width: 100%;
+  max-width: 50%;
+  flex: 0 0 50%;
+}
+.col-7 {
+  width: 100%;
+  max-width: 58.33%;
+  flex: 0 0 58.33%;
+}
+.col-8 {
+  width: 100%;
+  max-width: 66.66%;
+  flex: 0 0 66.66%;
+}
+.col-9 {
+  width: 100%;
+  max-width: 75%;
+  flex: 0 0 75%;
+}
+.col-10 {
+  width: 100%;
+  max-width: 83.33%;
+  flex: 0 0 83.33%;
+}
+.col-11 {
+  width: 100%;
+  max-width: 91.66%;
+  flex: 0 0 91.66%;
+}
+.col-12 {
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+}

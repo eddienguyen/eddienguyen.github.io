@@ -1,3 +1,19 @@
+- updates:
+ - "eslint": 4.10.0 => "8.44.0"
+ - "next": 13.2 => 13.3.4
+- removes: 
+ - package: @babel/core, @styled-jsx/plugin-sass, babel-core, babel-eslint, babel-jest, babel-loader, babel-preset-react-app, babel-runtime, case-sensitive-paths-webpack-plugin, chalk, css-loader, dotenv, dotenv-expand, eslint-loader, eslint-plugin-flowtype, eslint-plugin-import, eslint-plugin-jsx-a11y, eslint-plugin-react, extract-text-webpack-plugin, file-loader, fs-extra, html-webpack-plugin, jest, node-sass, npm, object-assign, postcss-flexbugs-fixes, postcss-loader, raf, react-dev-utils, resolve, style-loader, sw-precache-webpack-plugin, url-loader, webpack, webpack-dev-server, webpack-manifest-plugin, whatwg-fetch
+ - bootstrap
+ - react-hot-loader: nextjs supports fast refresh
+ - asset-manifest.json as it comes with create-react-app
+ - index.html
+ - .babelrc
+ - scripts/build.js
+ - scripts/start.js
+ - scripts/test.js
+ - config folder since it comes with create-react-app
+ - registerServiceWorker.js
+ - routes.js
 #### 0.2.1 (2023-03-24)
 
 - 0.2.1
@@ -24,3 +40,38 @@
 - rm index.css
 - 2nd commit
 - first commit
+
+#### 0.2.1 (2023-03-24)
+ - removes : 
+    - react-router-dom
+    - bootstrap
+    - eslint-config-react-app
+    - styled-components
+    - following package.json scripts:
+      - "start": "node scripts/start.js",
+      - "build": "node scripts/build.js",
+
+ - add:
+    - next
+    - eslint-config-next
+    - sass
+    - for writing sass inside style-jsx
+      - node-sass
+      - postcss
+      - autoprefixer
+      - @styled-jsx/plugin-sass
+      - @babel/core
+      - @babel/plugin-proposal-private-methods
+    - pages/
+    - app/layout.js
+    - components/AppLink as replacement for next/link (with legacyBehavior prop for nextjs 13)
+    - babelrc, postcss.config.js,
+
+ - updates:
+   - "react": "^16.4.1" => "^18.2.0"
+   - "react-dom": "^16.4.1" => "^18.2.0"
+   - Move any images, fonts, or other static assets to public.
+   - Moved all css files into styles/
+   - Moved src/theme/ into styles/theme/
+   - Moved src/components into components/
+   - use scss instead of styled-components
