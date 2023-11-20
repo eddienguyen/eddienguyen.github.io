@@ -91,7 +91,7 @@ function SectionViewProjects(props) {
           <>Currently there are no project(s) available</>
         )}
 
-        <div className="mt-20 text-center" data-scroll data-scroll-speed="0.25">
+        <div className="mt-20 text-center" data-scroll data-scroll-speed="0.05">
           <AppLink href="/projects" className="link-spacing">
             show all
           </AppLink>

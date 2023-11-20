@@ -14,7 +14,7 @@ import gsap from "gsap";
 import Container from "../Container";
 import asset from "@/plugins/assets";
 import Section from "@/components/Section";
-import { blueBell, headerHeight, solitude } from "@/styles/theme/variables";
+import { black, blueBell, headerHeight, solitude } from "@/styles/theme/variables";
 import { IconArrowLeft, IconArrowRight } from "@/styles/theme/icons";
 import Text3D from "./Text3D";
 import AppLink from "@/components/AppLink";
@@ -122,7 +122,7 @@ function Header(props) {
         ref={backgroundRef}
       >
         <img
-          src={asset("img/examples/TopGroup7898.jpg")}
+          src={asset("img/examples/TopGroup7895.jpg")}
           alt="background"
           className="image object-cover w-full h-full"
         />
@@ -253,7 +253,18 @@ function Header(props) {
           .image {
             object-position: top left;
             object-fit: cover;
-            filter: grayscale(1);
+            // filter: grayscale(1);
+          }
+          &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: ${black};
+            opacity: 0.2;
+            z-index: 1;
           }
         }
 
@@ -287,8 +298,8 @@ function Header(props) {
           padding-bottom: ${headerHeight}px;
 
           .header__container {
-            mix-blend-mode: color-dodge;
-            filter: invert(100%);
+            // mix-blend-mode: color-dodge;
+            // filter: invert(100%);
           }
 
           .nav__btn {

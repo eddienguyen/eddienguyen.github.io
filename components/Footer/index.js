@@ -74,19 +74,22 @@ class Footer extends Component {
           </div>
           <div className="socials">
             <AppLink
-              href="/"
+              href={profileInfo?.facebook}
+              target="_blank"
               className="social__link inline-block mx-4 text-solitude text-lg"
             >
               <IconFacebook />
             </AppLink>
             <AppLink
-              href="/"
+              href={profileInfo?.instagram}
+              target="_blank"
               className="social__link inline-block mx-4 text-solitude text-lg"
             >
               <IconInsta />
             </AppLink>
             <AppLink
-              href="/"
+              href={profileInfo?.youtube}
+              target="_blank"
               className="social__link inline-block mx-4 text-solitude text-lg"
             >
               <IconYoutube />

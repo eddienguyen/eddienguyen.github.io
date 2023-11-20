@@ -67,20 +67,24 @@ function RunningTexts(props) {
       >
         <p
           ref={mainTextRef}
-          className="text main m-0 text-7xl text-primary-black font-extrabold"
+          className="text main m-0 text-7xl leading-normal text-solitude-light font-extrabold"
         >
-          Front-end Development - Website Development - Agile/SCRUM Teamwork -
-          Application Development - Brand Design -
+          Front-end Development - Brand Design - Agile/SCRUM Teamwork - Website
+          Development - Mobile Application -
         </p>
         <p
           ref={nextTextRef}
-          className="text next m-0 absolute text-7xl text-primary-black font-extrabold"
+          className="text next m-0 absolute text-7xl leading-normal text-solitude-light font-extrabold"
         >
-          Front-end Development - Website Development - Agile/SCRUM Teamwork -
-          Application Development - Brand Design -
+          Front-end Development - Brand Design - Agile/SCRUM Teamwork - Website
+          Development - Mobile Application -
         </p>
       </div>
       <style jsx>{`
+        .running-texts__container {
+          mix-blend-mode: color-dodge;
+          filter: invert(100%);
+        }
         .running-texts {
           .text {
             padding-right: 0.4em;

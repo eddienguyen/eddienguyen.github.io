@@ -27,7 +27,7 @@ function Text3D({ primary = "primary", secondary = "secondary", ...props }) {
         }
         .primary {
           // testing with color-dodge
-          color: #696969;
+          // color: #696969;
         }
         .primary,
         .secondary {

@@ -26,8 +26,8 @@ module.exports = {
         "primary-white": "#f0f4fa",
       },
       fontFamily: {
-        "sans": ['"Montserrat"', ...defaultTheme.fontFamily.sans],
-        "serif": ['"Playfair\\ Display"', ...defaultTheme.fontFamily.serif],
+        "sans": ['var(--font-montserrat)', ...defaultTheme.fontFamily.sans],
+        "serif": ['var(--font-playfair)', ...defaultTheme.fontFamily.serif],
       },
     },
   },

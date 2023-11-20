@@ -120,8 +120,6 @@ function BriefStory({
           <AppLink
             href={APP_ROUTES.STORIES.INDEX}
             className="link-spacing"
-            data-scroll
-            data-scroll-speed="0.3"
           >
             read more
           </AppLink>
