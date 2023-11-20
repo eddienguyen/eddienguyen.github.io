@@ -2,37 +2,30 @@ import AppLink from "components/AppLink";
 import { color } from "styles/theme/variables";
 
 function NavItem(props) {
-  const _zIndex = props.opacity === 1 ? 100 : -1;
-  const _opacity = props.opacity ? Math.max(props.opacity, 0.2) : 1;
+  const { className: _className = "", ..._props } = props;
   return (
-    <AppLink className="nav-item anchor" href={props.href}>
+    <AppLink
+      className={`nav-item text-primary-black dark:text-primary-white font-bold text-xs ${_className}`}
+      {..._props}
+    >
       {props.children}
       <style jsx global>{`
         .nav-item {
           position: relative;
           text-decoration: none;
           margin: 0 15px;
-          font-size: 0.8em;
           cursor: pointer;
-          color: ${color.white};
+          transition: all 0.1s;
+          letter-spacing: 0.6em;
+          opacity: 0.9;
 
-          &:after {
-            content: " ";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 0;
-            background-color: ${color.white};
-            transition: height 0.1s;
+          &:first-child {
+            margin-left: 0;
           }
-          &:hover {
-            color: ${color.lightBlue};
 
-            &:after {
-              height: 90%;
-              z-index: -3;
-            }
+          &:hover {
+            color: ${color.blueDeepSky};
+            opacity: 1;
           }
         }
       `}</style>

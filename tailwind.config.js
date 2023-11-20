@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,13 +15,22 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "primary-black": "#070600",
-        "primary-blue": "#279AF1",
-        "light-blue": "#00d8ff",
+        "primary-black": "#02070f",
+        "blue-deep-sky": "#00d8ff",
+        "blue-bell": "#9999cc",
+        "blue-rock": "#99acc5",
+        "blue-periwinkle": "#c2d0e3",
+        "solitude": "#e0e6ec",
+        "solitude-light": "#e9edf3",
         "primary-red": "#EA526F",
-        "primary-white": "#F7F7FF",
+        "primary-white": "#f0f4fa",
+      },
+      fontFamily: {
+        "sans": ['"Montserrat"', ...defaultTheme.fontFamily.sans],
+        "serif": ['"Playfair\\ Display"', ...defaultTheme.fontFamily.serif],
       },
     },
   },
+  darkMode: 'class',
   plugins: [],
 };

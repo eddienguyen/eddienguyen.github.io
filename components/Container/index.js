@@ -14,14 +14,10 @@ function Container(props) {
         }
         .container {
           // padding: 30px 120px 0 120px;
-          padding: 15px 10px 0 10px;
+          padding: 0 10px 0 10px;
 
           @media all and (min-width: ${sizes.tablet}px) {
-            padding: 15px 30px 0 30px;
-          }
-
-          @media all and (min-width: ${sizes.desktop}px) {
-            padding-top: 30px;
+            padding: 0 30px 0 30px;
           }
         }
       `}</style>

@@ -1,7 +1,7 @@
 import { black, headerHeight } from "@/styles/theme/variables";
 
 function Section(props) {
-  const {className: _class, ..._props} = props;
+  const {className: _class = "", ..._props} = props;
   return (
     <section className={`app-section ${_class}`} {..._props}>
       {props.children}

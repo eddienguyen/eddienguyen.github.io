@@ -1,5 +1,8 @@
-import "../styles/global.scss";
+import "keen-slider/keen-slider.min.css";
+
+import "@/styles/global.scss";
 import NavBar from "@/components/NavBar";
+import SideNav from "@/components/SideNav";
 import ClientMasterPage from "@/components/MasterPage";
 
 export const metadata = {
@@ -17,6 +20,7 @@ export default function RootLayout({
       <body>
         <ClientMasterPage>
           <NavBar />
+          <SideNav />
           {children}
         </ClientMasterPage>
       </body>
