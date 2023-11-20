@@ -1,9 +1,9 @@
 // import styled from 'styled-components';
 
-import { blue, lightBlue } from "./variables";
+import { blue, blueDeepSky, bluePeriwinkle } from "./variables";
 
 // export const Anchor = styled.a`
-//     color: ${lightBlue};
+//     color: ${blueDeepSky};
 //     text-decoration: none;
 //     position: relative;
 
@@ -14,7 +14,7 @@ import { blue, lightBlue } from "./variables";
 //         bottom: 0;
 //         height: 0%;
 //         width: 100%;
-//         background-color: ${lightBlue};
+//         background-color: ${blueDeepSky};
 //         z-index: -3;
 //         transition: height .1s, background-color .1s;
 //     }
@@ -30,7 +30,7 @@ const TypeStyles = () => (
   <style jsx global>{`
     .anchor {
       position: relative;
-      color: ${lightBlue};
+      color: ${blueDeepSky};
       text-decoration: none;
       cursor: pointer;
 
@@ -41,7 +41,7 @@ const TypeStyles = () => (
         bottom: 0;
         height: 0%;
         width: 100%;
-        background-color: ${lightBlue};
+        background-color: ${blueDeepSky};
         transition: height 0.1s, background-color 0.1s;
         z-index: -3;
       }
@@ -51,6 +51,30 @@ const TypeStyles = () => (
           height: 90%;
           background-color: ${blue};
           z-index: -1;
+        }
+      }
+    }
+    .link-spacing {
+      letter-spacing: 0.6em;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+      padding-bottom: 0.8em;
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: ${bluePeriwinkle};
+        transition: inherit;
+      }
+
+      &:hover {
+        letter-spacing: 0.8em;
+        &:after {
+          background-color: ${blueDeepSky};
         }
       }
     }

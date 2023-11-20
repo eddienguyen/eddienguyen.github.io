@@ -2,11 +2,10 @@ import { black } from "styles/theme/variables";
 
 function Background(props) {
   return (
-    <div className="background">
+    <div className="background bg-primary-white dark:bg-primary-black">
       <style jsx>{`
         .background {
           position: fixed;
-          background-color: ${black};
           left: 0;
           top: 0;
           width: 100vw;

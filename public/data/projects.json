@@ -1,0 +1,132 @@
+{
+    "data": [
+        {
+            "title": "Atherlabs",
+            "year": "2022",
+            "category": "Website",
+            "thumbnail": "img/examples/w-1.jpg",
+            "opening": "Landing page for a NFT game company, with smooth-scrolling experience with 3D effects.",
+            "media": [
+                "img/examples/ather-coming-soon-bg.jpg",
+                "img/examples/ather-std-lal.jpg",
+                "img/examples/ather-std-jo.jpg"
+            ],
+            "permalink": "",
+            "role": "Front-end Developer",
+            "sow": [
+                "UI & UX Development",
+                "Animation & visual effect"
+            ],
+            "stack": [
+                {
+                    "name": "Nextjs",
+                    "image": ""
+                },
+                {
+                    "name": "Threejs",
+                    "image": ""
+                }
+            ],
+            "slug": "ather",
+            "video": "",
+            "videoType": ""
+        },
+        {
+            "title": "Acnes.com.vn",
+            "year": "2022",
+            "category": "Website",
+            "thumbnail": "img/examples/w-2.jpg",
+            "opening": "Acnes the acne cream landing page, with products and brand introduction",
+            "media": [
+
+            ],
+            "permalink": "https://acnes.com.vn",
+            "role": "Front-end Developer",
+            "sow": [
+                "Website development",
+                "Animation & visual effect",
+                "Responsive awareness"
+            ],
+            "stack": [
+                {
+                    "name": "HTML5/SCSS",
+                    "image": ""
+                },
+                {
+                    "name": "JQuery",
+                    "image": ""
+                },
+                {
+                    "name": "GSAP",
+                    "image": ""
+                }
+            ],
+            "slug": "acnes",
+            "video": "",
+            "videoType": ""
+        },
+        {
+            "title": "Leap The World-wide-web",
+            "year": "2018",
+            "category": "Webapp",
+            "thumbnail": "img/examples/w-3.jpg",
+            "opening": "Leapthew3 is a team project that we worked in 2018 as a graduation project.",
+            "media": [
+
+            ],
+            "permalink": "",
+            "role": "fullstack developer",
+            "sow": [
+                "Creative web development",
+                "Animation & visual effect"
+            ],
+            "stack": [
+                {
+                    "name": "nodejs",
+                    "image": ""
+                },
+                {
+                    "name": "reactjs",
+                    "image": ""
+                },
+                {
+                    "name": "heroku",
+                    "image": ""
+                }
+            ],
+            "slug": "leap-the-w3",
+            "video": "",
+            "videoType": ""
+        },
+        {
+            "title": "Smith-it Smith",
+            "year": "2017",
+            "category": "Java game",
+            "thumbnail": "img/examples/w-4.jpg",
+            "opening": "We worked in 2017 to create a java game as a graduation project for the OOP Development course.",
+            "media": [
+
+            ],
+            "permalink": "",
+            "role": "Product Owner",
+            "sow": [
+                "Game development",
+                "Animation & visual effect",
+                "Game design"
+            ],
+            "stack": [
+                {
+                    "name": "java",
+                    "image": ""
+                },
+                {
+                    "name": "intellij",
+                    "image": ""
+                }
+            ],
+            "slug": "smith-it-smith",
+            "video": "https://www.facebook.com/eddie.aquarious.96/videos/1461503510571314",
+            "videoType": "FB"
+        }
+    ]
+}

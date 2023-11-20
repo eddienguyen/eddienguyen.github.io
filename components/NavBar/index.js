@@ -4,8 +4,16 @@ import Container from "components/Container";
 import NavItem from "./NavItem";
 import ScrollingNav from "./ScrollingNav";
 import DefaultNav from "./DefaultNav";
+import NavBrand from "./NavBrand";
+import APP_ROUTES from "@/modules/constants/app_routes";
+import { UIContext } from "../contexts/UIProvider";
+import { IconDownload } from "@/styles/theme/icons";
+import asset from "@/plugins/assets";
+import profileInfo from "public/data/about.json";
 
 class NavBar extends Component {
+  static contextType = UIContext;
+
   static defaultProps = {
     bottomBorderWidth: 2,
     // headerHeight: typeof window !== undefined ? window.innerHeight : 0,
@@ -23,13 +31,17 @@ class NavBar extends Component {
     this.updateNavOpacity = this.updateNavOpacity.bind(this);
   }
   componentDidMount() {
-    this.updateNavOpacity();
-    window.addEventListener("scroll", this.updateNavOpacity);
+    // this.updateNavOpacity();
+    // window.addEventListener("scroll", this.updateNavOpacity);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.updateNavOpacity);
+    // window.removeEventListener("scroll", this.updateNavOpacity);
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+
+  // }
 
   /**
    * fading SrollingNavBar when scrolldown
@@ -67,24 +79,67 @@ class NavBar extends Component {
   }
 
   render() {
+    const { visibleMenu } = this.context;
     return (
       <div>
         <DefaultNav>
-          <Container className="text-center">
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/projects">Projects</NavItem>
-            <NavItem href="/about">About</NavItem>
+          <Container className="">
+            <div className="grid grid-cols-6">
+              <div className="col-span-1">
+                <NavBrand className="navbar__logo" />
+              </div>
+              <div className="menu col-span-5">
+                <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+                  About
+                </NavItem>
+                <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
+                  Projects
+                </NavItem>
+                <NavItem href={APP_ROUTES.STORIES.INDEX} className="uppercase">
+                  Stories
+                </NavItem>
+                <NavItem
+                  href={APP_ROUTES.PLAYGROUND.INDEX}
+                  className="uppercase"
+                >
+                  Playground
+                </NavItem>
+                <NavItem href={asset(profileInfo.pdf)} className="uppercase" target="_blank" directLink rel="noopener">
+                  <IconDownload className="text-base mr-3 align-text-bottom" />
+                  My cv
+                </NavItem>
+              </div>
+            </div>
           </Container>
         </DefaultNav>
         <ScrollingNav
-          opacity={this.state.navOpacity}
+          // opacity={this.state.navOpacity} by state
+          opacity={visibleMenu ? 1 : 0}
           borderBottomWidth={this.props.bottomBorderWidth}
         >
-          <Container className="flex justify-center md:justify-end">
-            {/* NavBrand here (at start) */}
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/projects">Projects</NavItem>
-            <NavItem href="/about">About</NavItem>
+          <Container className="flex flex-col justify-center items-baseline md:flex-row">
+            <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+              About
+            </NavItem>
+            <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
+              Projects
+            </NavItem>
+            <NavItem href={APP_ROUTES.STORIES.INDEX} className="uppercase">
+              Stories
+            </NavItem>
+            <NavItem href={APP_ROUTES.PLAYGROUND.INDEX} className="uppercase">
+              Playground
+            </NavItem>
+            <NavItem
+              href={asset(profileInfo.pdf)}
+              className="uppercase"
+              target="_blank"
+              directLink
+              rel="noopener"
+            >
+              <IconDownload className="text-base mr-3 align-text-bottom" />
+              My cv
+            </NavItem>
           </Container>
         </ScrollingNav>
       </div>

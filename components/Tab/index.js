@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
-import { lightBlue } from "@/styles/theme/variables";
+import { blueDeepSky } from "@/styles/theme/variables";
 
 // Tab will display this tab's label, handles click events and let the Tabs component
 // knows which Tab has been clicked.
@@ -35,7 +35,7 @@ class Tab extends Component {
 
         <style jsx>{`
           .tab-list-item {
-            background-color: ${lightBlue};
+            background-color: ${blueDeepSky};
             margin-bottom: -1px;
             padding: 15px 40px;
             display: inline-block;

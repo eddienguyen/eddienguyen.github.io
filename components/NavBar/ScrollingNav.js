@@ -1,3 +1,4 @@
+import { headerIndex } from "@/styles/theme/variables";
 import { color } from "styles/theme/variables";
 
 /**
@@ -7,29 +8,26 @@ import { color } from "styles/theme/variables";
  * if opacity is fully 1 (away from top) => show border-bottom
  */
 function ScrollingNav(props) {
-  const _zIndex = props.opacity === 1 ? 100 : -1;
+  const _zIndex = props.opacity === 1 ? headerIndex : -1;
   const _opacity = props.opacity === 1 ? Math.max(props.opacity, 0.2) : 0;
-  const _bbw = props.opacity === 1 ? props.borderBottomWidth : 0;
-
+  // const _bbw = props.opacity === 1 ? props.borderBottomWidth : 0;
+  const _y = props.opacity === 1 ? 0 : -100;
   return (
-    <div className="scrolling-nav">
+    <div className="scrolling-nav fixed top-0 h-screen flex items-center bg-primary-white dark:bg-primary-black transition-all duration-500">
       {props.children}
       <style jsx>{`
         .scrolling-nav {
-          position: fixed;
-          display: flex;
-          position: fixed;
-          justify-content: flex-end;
-          align-items: center;
           padding-bottom: 30px;
-          z-index: ${_zIndex};
+          z-index: ${headerIndex};
           opacity: ${_opacity};
           width: 100%;
-          border-bottom: solid ${color.lightBlue};
-          background-color: ${color.black};
-          border-bottom-width: ${_bbw};
+          border-bottom: solid ${color.blueDeepSky};
+          border-bottom-width: 5px;
+          transform: translateY(${_y}%);
         }
       `}</style>
+      {/* border-bottom-width: ${_bbw}; */}
+      {/* z-index: ${_zIndex}; */}
     </div>
   );
 }
