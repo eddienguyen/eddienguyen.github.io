@@ -82,7 +82,7 @@ function Header(props) {
     const init = () => {
       if (isInit) return;
 
-      // capture once
+      // capture on resize
       const _rect = galleryMediaRef.current?.getBoundingClientRect();
       _top = _rect.top;
       _bot = window.innerHeight - _rect.bottom;
@@ -105,7 +105,11 @@ function Header(props) {
       setIsInit(true);
     };
 
-    if (loadingState === "init" || loadingState === "done") {
+    if (loadingState === "init") {
+      setIsInit(false);
+      init();
+    }
+    if (loadingState === "done") {
       init();
     }
     return () => {};
