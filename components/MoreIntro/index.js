@@ -12,7 +12,7 @@ function MoreIntro() {
   return (
     <Section className="section__more-intro">
       <Container>
-        <div className="content text-center font-serif" data-scroll data-scroll-speed="0.3">
+        <div className="content text-center font-serif" data-scroll data-scroll-speed="0.2">
           A {thisYear - personalInfo.birthyear} year old web developer based in
           Hanoi, Viet Nam. I enjoy building everything from web applications to
           rich interactive website. I have worked with small projects and for

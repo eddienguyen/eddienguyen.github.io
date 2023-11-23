@@ -10,6 +10,7 @@ import { UIContext } from "../contexts/UIProvider";
 import { IconDownload } from "@/styles/theme/icons";
 import asset from "@/plugins/assets";
 import profileInfo from "public/data/about.json";
+import navMenuItems from "@/modules/constants/menu";
 
 class NavBar extends Component {
   static contextType = UIContext;
@@ -83,13 +84,23 @@ class NavBar extends Component {
     return (
       <div>
         <DefaultNav>
-          <Container className="">
+          <Container>
             <div className="grid grid-cols-6">
               <div className="col-span-1">
                 <NavBrand className="navbar__logo" />
               </div>
               <div className="menu col-span-5">
-                <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+                {navMenuItems.length > 0 &&
+                  navMenuItems.map((eachItem, index) => (
+                    <NavItem
+                      href={eachItem.path}
+                      className="uppercase"
+                      key={index}
+                    >
+                      {eachItem.name}
+                    </NavItem>
+                  ))}
+                {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
                   About
                 </NavItem>
                 <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
@@ -103,8 +114,14 @@ class NavBar extends Component {
                   className="uppercase"
                 >
                   Playground
-                </NavItem>
-                <NavItem href={asset(profileInfo.pdf)} className="uppercase" target="_blank" directLink rel="noopener">
+                </NavItem> */}
+                <NavItem
+                  href={asset(profileInfo.pdf)}
+                  className="uppercase"
+                  target="_blank"
+                  directLink
+                  rel="noopener"
+                >
                   <IconDownload className="text-base mr-3 align-text-bottom" />
                   My cv
                 </NavItem>
@@ -118,7 +135,13 @@ class NavBar extends Component {
           borderBottomWidth={this.props.bottomBorderWidth}
         >
           <Container className="flex flex-col justify-center items-baseline md:flex-row">
-            <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+            {navMenuItems.length > 0 &&
+              navMenuItems.map((eachItem, index) => (
+                <NavItem href={eachItem.path} className="uppercase" key={index}>
+                  {eachItem.name}
+                </NavItem>
+              ))}
+            {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
               About
             </NavItem>
             <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
@@ -129,7 +152,7 @@ class NavBar extends Component {
             </NavItem>
             <NavItem href={APP_ROUTES.PLAYGROUND.INDEX} className="uppercase">
               Playground
-            </NavItem>
+            </NavItem> */}
             <NavItem
               href={asset(profileInfo.pdf)}
               className="uppercase"

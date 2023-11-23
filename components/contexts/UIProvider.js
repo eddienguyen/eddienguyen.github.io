@@ -1,8 +1,8 @@
 "use client";
 // import { useEventEmitter } from 'ahooks';
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef } from "react";
 import Preloader from "../Preloader";
-
+import DeviceHelper from "@/plugins/utils/DeviceHelper";
 // listener usage:
 // - yield some_value:
 // listener.emit({
@@ -42,9 +42,21 @@ import Preloader from "../Preloader";
 export const UIContext = createContext({});
 
 function UIProvider(props) {
+  const timeout = useRef(null);
   const [loadingState, setLoadingState] = useState("new");
   const [visibleMenu, setVisibleMenu] = useState(false); // visible scrolling nav
   const [visibleNav, setVisibleNav] = useState(false); // visible side nav
+
+  const handleResize = () => {
+    setLoadingState("init");
+    if (DeviceHelper.isMobile()) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+    }
+  };
 
   //   const listener = useEventEmitter();
   useEffect(() => {
@@ -62,19 +74,26 @@ function UIProvider(props) {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
       const locomotiveScroll = new LocomotiveScroll();
       window.scrollTo(0, 0); // TODO: move this on pre-loading calculation
-
+      handleResize();
       setLoadingState("init");
     })();
-    return () => {};
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {
     if (loadingState === "init") {
-      setTimeout(() => {
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
         setLoadingState("done");
       }, 500);
     }
-    return () => {};
+    return () => {
+      clearTimeout(timeout.current);
+    };
   }, [loadingState]);
 
   return (

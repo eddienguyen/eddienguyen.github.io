@@ -5,6 +5,7 @@ import pkg from "package.json";
 import NavItem from "@/components/NavBar/NavItem";
 import APP_ROUTES from "@/modules/constants/app_routes";
 import profileInfo from "public/data/about.json";
+import navMenuItems from "@/modules/constants/menu";
 
 import {
   IconDownload,
@@ -49,7 +50,13 @@ class Footer extends Component {
             <span className="brand__sm">g</span>
           </h2>
           <div className="menu mb-7">
-            <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+            {navMenuItems.length > 0 &&
+              navMenuItems.map((eachItem, index) => (
+                <NavItem href={eachItem.path} className="uppercase" key={index}>
+                  {eachItem.name}
+                </NavItem>
+              ))}
+            {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
               About
             </NavItem>
             <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
@@ -60,7 +67,7 @@ class Footer extends Component {
             </NavItem>
             <NavItem href={APP_ROUTES.PLAYGROUND.INDEX} className="uppercase">
               Playground
-            </NavItem>
+            </NavItem> */}
             <NavItem
               href={asset(profileInfo.pdf)}
               className="uppercase"

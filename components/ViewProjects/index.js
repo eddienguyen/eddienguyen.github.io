@@ -36,7 +36,6 @@ function SectionViewProjects(props) {
 
   const handlePrevSlide = (e) => {
     e.preventDefault();
-
     if (slider.current) slider.current.prev();
   };
   const handleNextSlide = (e) => {
@@ -91,11 +90,11 @@ function SectionViewProjects(props) {
           <>Currently there are no project(s) available</>
         )}
 
-        <div className="mt-20 text-center" data-scroll data-scroll-speed="0.05">
+        {/* <div className="mt-20 text-center" data-scroll data-scroll-speed="0.05">
           <AppLink href="/projects" className="link-spacing">
             show all
           </AppLink>
-        </div>
+        </div> */}
       </Container>
 
       <style jsx>{`
