@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Section from "@/components/Section";
 import Container from "@/components/Container";
 import { IconArrowRight } from "@/styles/theme/icons";
+import personalInfo from "public/data/about.json";
 
 function SectionContactMe(props) {
+  const [message, setMessage] = useState("");
   return (
     <Section className="section__contact">
       <Container className="">
@@ -22,7 +25,11 @@ function SectionContactMe(props) {
             By better understanding through words and expressions, we will
             improve faster and have more fun working together.
           </p>
-          <form>
+          <form
+            action={`mailto:${
+              personalInfo.email
+            }&subject=From%Folio`}
+          >
             <div
               className="form__holder w-full flex"
               data-scroll
@@ -32,9 +39,11 @@ function SectionContactMe(props) {
                 <input
                   type="text"
                   placeholder="Your message"
-                  id="text"
+                  id="body"
+                  name="body"
                   className="form__input w-full py-1 px-3 bg-primary-white text-xs  font-bold text-primary-black"
                   aria-required="true"
+                  onChange={(e) => setMessage(e.target.value)}
                 />
               </div>
               <button

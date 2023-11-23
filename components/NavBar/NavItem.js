@@ -3,6 +3,7 @@ import { color } from "styles/theme/variables";
 
 function NavItem(props) {
   const { className: _className = "", ..._props } = props;
+
   return (
     <AppLink
       className={`nav-item text-primary-black dark:text-primary-white font-bold text-xs ${_className}`}

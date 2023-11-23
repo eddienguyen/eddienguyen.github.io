@@ -94,9 +94,9 @@ function ProjectCard({ data = {}, ...props }) {
           <h4 className="type text-xl tracking-tight font-light text-primary-red">
             {category}
           </h4>
-          <span className="cta uppercase text-xs font-bold text-primary-black">
+          {/* <span className="cta uppercase text-xs font-bold text-primary-black">
             view
-          </span>
+          </span> */}
         </div>
       </div>
 

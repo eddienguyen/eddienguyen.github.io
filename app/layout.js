@@ -15,6 +15,7 @@ const montserrat = Montserrat({
   display: "swap",
   variable: "--font-montserrat",
   subsets: ["latin", "vietnamese"],
+  adjustFontFallback: false,
 });
 
 const playfair = Playfair_Display({

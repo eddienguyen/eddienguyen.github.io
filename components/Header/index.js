@@ -1,7 +1,6 @@
 "use client";
 
 import React, {
-  Component,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -13,8 +12,12 @@ import gsap from "gsap";
 
 import Container from "../Container";
 import asset from "@/plugins/assets";
-import Section from "@/components/Section";
-import { black, blueBell, headerHeight, solitude } from "@/styles/theme/variables";
+import {
+  black,
+  blueBell,
+  headerHeight,
+  solitude,
+} from "@/styles/theme/variables";
 import { IconArrowLeft, IconArrowRight } from "@/styles/theme/icons";
 import Text3D from "./Text3D";
 import AppLink from "@/components/AppLink";
@@ -68,7 +71,6 @@ function Header(props) {
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     // backgroundRef.current.style.clipPath = `inset(${_top}px ${_right}px ${_bot}px ${_left}px)`;
 
     return () => {};
@@ -96,7 +98,6 @@ function Header(props) {
           // markers: true,
         },
       });
-      console.log("_top", _top);
       timeline.from(backgroundRef.current, {
         clipPath: `inset(${_top}px ${_right}px ${_bot}px ${_left}px)`,
       });
@@ -193,7 +194,6 @@ function Header(props) {
           </div>
         </div>
       </Container>
-
       <RunningTexts className="absolute w-auto bottom-0 left-0" />
 
       <style jsx>{`
