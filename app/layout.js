@@ -1,28 +1,15 @@
 import "keen-slider/keen-slider.min.css";
-import { Montserrat, Playfair_Display } from "next/font/google";
 import "@/styles/global.scss";
 import NavBar from "@/components/NavBar";
 import SideNav from "@/components/SideNav";
 import ClientMasterPage from "@/components/MasterPage";
+import { localPlayfair, montserrat } from "./fonts";
 
 export const metadata = {
   title: "Eddie Ng's Portfolio",
   description: "Welcome to Eddie Ng's Portfolio",
 };
 
-// Font files can be colocated inside the "/app"
-const montserrat = Montserrat({
-  display: "swap",
-  variable: "--font-montserrat",
-  subsets: ["latin", "vietnamese"],
-  adjustFontFallback: false,
-});
-
-const playfair = Playfair_Display({
-  display: "swap",
-  variable: "--font-playfair",
-  subsets: ["latin", "vietnamese"],
-});
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -30,7 +17,10 @@ export default function RootLayout({
   children,
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${localPlayfair.variable} `}
+    >
       <body>
         <ClientMasterPage>
           <NavBar />

@@ -56,18 +56,6 @@ class Footer extends Component {
                   {eachItem.name}
                 </NavItem>
               ))}
-            {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
-              About
-            </NavItem>
-            <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
-              Projects
-            </NavItem>
-            <NavItem href={APP_ROUTES.STORIES.INDEX} className="uppercase">
-              Stories
-            </NavItem>
-            <NavItem href={APP_ROUTES.PLAYGROUND.INDEX} className="uppercase">
-              Playground
-            </NavItem> */}
             <NavItem
               href={asset(profileInfo.pdf)}
               className="uppercase"
