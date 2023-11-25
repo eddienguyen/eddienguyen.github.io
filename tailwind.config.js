@@ -27,7 +27,8 @@ module.exports = {
       },
       fontFamily: {
         "sans": ['var(--font-montserrat)', ...defaultTheme.fontFamily.sans],
-        "serif": ['var(--font-playfair)', ...defaultTheme.fontFamily.serif],
+        // "serif": ['var(--font-playfair)', ...defaultTheme.fontFamily.serif],
+        "serif": ['var(--font-playfair-local)', ...defaultTheme.fontFamily.serif],
       },
     },
   },
