@@ -4,6 +4,7 @@ export const blueDeepSky = "#00d8ff";
 export const blueBell = "#9999cc";
 export const blueRock = "#99acc5";
 export const bluePeriwinkle = "#c2d0e3";
+export const border = "#585858";
 export const solitude = "#e0e6ec";
 export const solitudeLight = "#e9edf3";
 export const red = "#EA526F";
@@ -20,6 +21,7 @@ export const color = {
   blueBell,
   blueRock,
   bluePeriwinkle,
+  border,
   solitude,
   solitudeLight,
   red,

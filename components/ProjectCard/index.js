@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 

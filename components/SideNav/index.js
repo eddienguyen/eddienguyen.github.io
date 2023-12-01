@@ -135,10 +135,6 @@ function SideNav(props) {
           font-size: 10px;
           letter-spacing: 0.5em;
         }
-        .nav__btns {
-          .btn-icon {
-          }
-        }
 
         // burger
         .btnMenu {

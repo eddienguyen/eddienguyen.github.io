@@ -40,7 +40,13 @@ function Header(props) {
   const MAX_ROTATE_X = 10; // deg
   const MAX_ROTATE_Y = 10; // deg
 
-  let _top, _right, _bot, _left;
+  // let _top, _right, _bot, _left;
+  let _path = useRef({
+    top: 0,
+    right: 0,
+    bot: 0,
+    left: 0,
+  });
 
   const manageMouseMove = (event) => {
     const x = event.clientX / persHolder.current.offsetWidth;
@@ -84,10 +90,10 @@ function Header(props) {
 
       // capture on resize
       const _rect = galleryMediaRef.current?.getBoundingClientRect();
-      _top = _rect.top;
-      _bot = window.innerHeight - _rect.bottom;
-      _left = _rect.left;
-      _right = window.innerWidth - _rect.right;
+      _path.current.top = _rect.top;
+      _path.current.bot = window.innerHeight - _rect.bottom;
+      _path.current.left = _rect.left;
+      _path.current.right = window.innerWidth - _rect.right;
 
       let timeline = new gsap.timeline({
         scrollTrigger: {
@@ -99,7 +105,7 @@ function Header(props) {
         },
       });
       timeline.from(backgroundRef.current, {
-        clipPath: `inset(${_top}px ${_right}px ${_bot}px ${_left}px)`,
+        clipPath: `inset(${_path.current.top}px ${_path.current.right}px ${_path.current.bot}px ${_path.current.left}px)`,
       });
 
       setIsInit(true);

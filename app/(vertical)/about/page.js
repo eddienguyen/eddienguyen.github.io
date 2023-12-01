@@ -3,7 +3,6 @@
 import AppLink from "@/components/AppLink";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
-import { red } from "@/styles/theme/variables";
 import personalInfo from "public/data/about.json";
 
 function AboutPage(props) {
@@ -401,7 +400,7 @@ function AboutPage(props) {
           {/* .copy */}
         </Container>
       </Section>
-      <style jsx global>{`
+      <style jsx>{`
         .about-page {
           .anchor {
             word-break: break-word;
