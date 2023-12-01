@@ -4,9 +4,11 @@
     "facebook": "https://www.facebook.com/eddie.aquarious.96",
     "fullname": "Quân Nguyễn",
     "homepage": "eddienguyen.github.io",
+    "homepage_https": "https://eddienguyen.github.io",
     "instagram": "https://www.instagram.com/dfo_usr",
     "phonenumber": "(+84) 923 968 438",
     "position": "front-end developer",
     "youtube": "https://www.youtube.com/channel/UCDQg0SLrjfxhc-jtxvZGbYQ",
-    "pdf": "/files/Nguyen-Hoang-Quan-2023-EN.pdf"
+    "pdf": "/files/Nguyen-Hoang-Quan-2023-EN.pdf",
+    "imagePath": "/img/examples/DSC03209.jpeg"
 }

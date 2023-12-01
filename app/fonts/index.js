@@ -1,19 +1,22 @@
-import { Montserrat, Playfair_Display } from "next/font/google";
+// import {
+//   Montserrat,
+//   Playfair_Display
+// } from "next/font/google";
 import localFont from "next/font/local";
 
 // Font files can be colocated inside the "/app"
-const montserrat = Montserrat({
-  display: "swap",
-  variable: "--font-montserrat",
-  subsets: ["latin", "vietnamese"],
-  adjustFontFallback: false,
-});
+// const montserrat = Montserrat({
+//   display: "swap",
+//   variable: "--font-montserrat",
+//   subsets: ["latin", "vietnamese"],
+//   adjustFontFallback: false,
+// });
 
-const playfair = Playfair_Display({
-  display: "swap",
-  variable: "--font-playfair",
-  subsets: ["latin", "vietnamese"],
-});
+// const playfair = Playfair_Display({
+//   display: "swap",
+//   variable: "--font-playfair",
+//   subsets: ["latin", "vietnamese"],
+// });
 
 const localPlayfair = localFont({
   src: [
@@ -112,4 +115,57 @@ const localPlayfair = localFont({
   declarations: [{ prop: "ascent-override", value: "90%" }],
 });
 
-export { montserrat, playfair, localPlayfair };
+const localMontserrat = localFont({
+  src: [
+    {
+      path: "./Montserrat/Montserrat-Black.woff2",
+      weight: "900",
+    },
+    {
+      path: "./Montserrat/Montserrat-Black.woff",
+      weight: "900",
+    },
+    {
+      path: "./Montserrat/Montserrat-Black.ttf",
+      weight: "900",
+    },
+
+    {
+      path: "./Montserrat/Montserrat-Bold.woff2",
+      weight: "700",
+    },
+    {
+      path: "./Montserrat/Montserrat-Bold.woff",
+      weight: "700",
+    },
+    {
+      path: "./Montserrat/Montserrat-Bold.ttf",
+      weight: "700",
+    },
+
+    {
+      path: "./Montserrat/Montserrat-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "./Montserrat/Montserrat-Regular.woff",
+      weight: "400",
+    },
+    {
+      path: "./Montserrat/Montserrat-Regular.ttf",
+      weight: "400",
+    },
+  ],
+  display: "swap",
+  variable: "--font-montserrat",
+  adjustFontFallback: false,
+  subsets: ["latin", "vietnamese"],
+  declarations: [{ prop: "ascent-override", value: "90%" }],
+});
+
+export {
+  // montserrat,
+  //  playfair,
+  localPlayfair,
+  localMontserrat,
+};

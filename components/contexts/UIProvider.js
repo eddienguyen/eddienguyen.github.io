@@ -41,7 +41,12 @@ import DeviceHelper from "@/plugins/utils/DeviceHelper";
 /** @type {import('react').Context<GeneralContext>} */
 export const UIContext = createContext({});
 
-function UIProvider(props) {
+/**
+ * @param {Object} props - ClientMasterPage's properties
+ * @param {'horizontal' | 'vertical'} [props.direction='vertical'] - scroll direction
+ * @returns ReactComponent
+ */
+function UIProvider({ direction = "vertical", ...props }) {
   const timeout = useRef(null);
   const [loadingState, setLoadingState] = useState("new");
   const [visibleMenu, setVisibleMenu] = useState(false); // visible scrolling nav
@@ -72,7 +77,11 @@ function UIProvider(props) {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      const locomotiveScroll = new LocomotiveScroll({
+        lenisOptions: {
+          orientation: direction,
+        },
+      });
       window.scrollTo(0, 0); // TODO: move this on pre-loading calculation
       handleResize();
       setLoadingState("init");
@@ -82,7 +91,7 @@ function UIProvider(props) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [direction]);
 
   useEffect(() => {
     if (loadingState === "init") {

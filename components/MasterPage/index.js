@@ -5,7 +5,12 @@ import TypeStyles from "@/styles/theme/types";
 import Footer from "@/components/Footer";
 import UIProvider from "../contexts/UIProvider";
 
-function ClientMasterPage(props) {
+/**
+ * @param {Object} props - ClientMasterPage's properties
+ * @param {string} [props.direction]=('horizontal'|'vertical') - scroll direction
+ * @returns ReactComponent
+ */
+function ClientMasterPage({ direction = "vertical", ...props }) {
   return (
     <>
       <TypeStyles />
@@ -14,10 +19,10 @@ function ClientMasterPage(props) {
         // defer
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"
       />
-      <UIProvider>
+      <UIProvider direction={direction}>
         {/* <Background /> */}
         {props.children}
-        <Footer />
+        {direction === "vertical" && <Footer />}
         <div className="block-layout fixed flex z-[999] xl:hidden xl:-z-10 w-screen h-screen top-0 left-0 bg-primary-black justify-center items-center text-center text-white p-3">
           Please continue on desktop for my responsive version is under
           construction
@@ -27,7 +32,6 @@ function ClientMasterPage(props) {
         .block-layout {
           font-size: 22px;
           font-weight: bold;
-
         }
       `}</style>
     </>
