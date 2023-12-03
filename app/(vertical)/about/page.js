@@ -3,11 +3,26 @@
 import AppLink from "@/components/AppLink";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
+import AppEvent from "@/modules/constants/event_names";
+import { sendEvent } from "@/plugins/utils/events";
 import personalInfo from "public/data/about.json";
+import { useLayoutEffect } from "react";
+import SideNav from "@/components/SideNav";
 
 function AboutPage(props) {
+  const init = async () => {
+    // wait for extra stuff
+    sendEvent(AppEvent.PAGE_LOADED);
+  };
+
+  useLayoutEffect(() => {
+    init();
+  }, []);
+
   return (
     <main className="about-page">
+      <SideNav />
+
       <Section className="first">
         <Container>
           <h1 className="my-8 text-5xl font-bold text-center text-primary-red uppercase">

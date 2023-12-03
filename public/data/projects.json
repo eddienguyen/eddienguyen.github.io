@@ -1,6 +1,36 @@
 {
     "data": [
         {
+            "title": "Smith-it Smith",
+            "year": "2017",
+            "category": "Java game",
+            "thumbnail": "img/examples/w-4.jpg",
+            "opening": "We worked in 2017 to create a java game as a graduation project for the OOP Development course.",
+            "media": [
+
+            ],
+            "permalink": "",
+            "role": "Product Owner",
+            "sow": [
+                "Game development",
+                "Animation & visual effect",
+                "Game design"
+            ],
+            "stack": [
+                {
+                    "name": "java",
+                    "image": ""
+                },
+                {
+                    "name": "intellij",
+                    "image": ""
+                }
+            ],
+            "slug": "smith-it-smith",
+            "video": "https://www.facebook.com/eddie.aquarious.96/videos/1461503510571314",
+            "videoType": "FB"
+        },
+        {
             "title": "Atherlabs",
             "year": "2022",
             "category": "Website",
@@ -66,7 +96,7 @@
             "videoType": ""
         },
         {
-            "title": "Leap The World-wide-web",
+            "title": "Leap The W3",
             "year": "2018",
             "category": "Webapp",
             "thumbnail": "img/examples/w-3.jpg",
@@ -99,35 +129,35 @@
             "videoType": ""
         },
         {
-            "title": "Smith-it Smith",
-            "year": "2017",
-            "category": "Java game",
+            "title": "BBTopia",
+            "year": "2020",
+            "category": "Webapp",
             "thumbnail": "img/examples/w-4.jpg",
-            "opening": "We worked in 2017 to create a java game as a graduation project for the OOP Development course.",
+            "opening": " Web application for beauty services finding in all Asia",
             "media": [
 
             ],
-            "permalink": "",
-            "role": "Product Owner",
+            "permalink": "https://bbtopia.com",
+            "role": "Front-end Developer",
             "sow": [
-                "Game development",
-                "Animation & visual effect",
-                "Game design"
+                "Built and developed User Interface",
+                "Query, filter result",
+                "User ranking and interview function",
+                "Authentication"
             ],
             "stack": [
                 {
-                    "name": "java",
+                    "name": "Nextjs",
                     "image": ""
                 },
                 {
-                    "name": "intellij",
+                    "name": "React-spring",
                     "image": ""
                 }
             ],
-            "slug": "smith-it-smith",
-            "video": "https://www.facebook.com/eddie.aquarious.96/videos/1461503510571314",
-            "videoType": "FB"
+            "slug": "bbtopia",
+            "video": "",
+            "videoType": ""
         }
-
     ]
 }

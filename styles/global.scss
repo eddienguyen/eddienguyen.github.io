@@ -41,6 +41,9 @@
   .link-spacing {
     @apply relative uppercase text-xs font-bold text-primary-black;
   }
+  .absolute-cover {
+    @apply absolute top-0 left-0 bottom-0 right-0;
+  }
 }
 
 :root {

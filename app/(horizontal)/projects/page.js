@@ -1,7 +1,13 @@
 "use client";
 
-import ReactPlayer from "react-player";
-import { useRef, useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+  createRef,
+  useCallback,
+} from "react";
 import { useKeenSlider } from "keen-slider/react";
 import dynamic from "next/dynamic";
 
@@ -20,80 +26,110 @@ import {
   IconArrowLeft,
 } from "@/styles/theme/icons";
 import { border, sideNavW } from "@/styles/theme/variables";
-import StringExtra from "@/plugins/utils/StringExtra";
+import { sendEvent } from "@/plugins/utils/events.js";
+import AppEvent from "@/modules/constants/event_names";
+import ProjectItem from "./ProjectItem";
+import gsap from "gsap";
 const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
   ssr: false,
 });
 
+// const WheelControls = (slider) => {
+//   let touchTimeout;
+//   let position;
+//   let wheelActive;
 
-const WheelControls = (slider) => {
-  let touchTimeout;
-  let position;
-  let wheelActive;
+//   function dispatch(e, name) {
+//     position.x -= e.deltaX;
+//     position.y -= e.deltaY;
+//     slider.container.dispatchEvent(
+//       new CustomEvent(name, {
+//         detail: {
+//           x: position.x,
+//           y: position.y,
+//         },
+//       })
+//     );
+//   }
 
-  function dispatch(e, name) {
-    position.x -= e.deltaX;
-    position.y -= e.deltaY;
-    slider.container.dispatchEvent(
-      new CustomEvent(name, {
-        detail: {
-          x: position.x,
-          y: position.y,
-        },
-      })
-    );
-  }
+//   function wheelStart(e) {
+//     position = {
+//       x: e.pageX,
+//       y: e.pageY,
+//     };
+//     dispatch(e, "ksDragStart");
+//   }
 
-  function wheelStart(e) {
-    position = {
-      x: e.pageX,
-      y: e.pageY,
-    };
-    dispatch(e, "ksDragStart");
-  }
+//   function wheel(e) {
+//     dispatch(e, "ksDrag");
+//   }
 
-  function wheel(e) {
-    dispatch(e, "ksDrag");
-  }
+//   function wheelEnd(e) {
+//     dispatch(e, "ksDragEnd");
+//   }
 
-  function wheelEnd(e) {
-    dispatch(e, "ksDragEnd");
-  }
+//   function eventWheel(e) {
+//     e.preventDefault();
+//     const direction =
+//       Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+//     if (direction > 0) {
+//       slider.next();
+//     }
 
-  function eventWheel(e) {
-    e.preventDefault();
-    const direction =
-      Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-    if (direction > 0) {
-      slider.next();
-    }
+//     if (direction < 0) {
+//       slider.prev();
+//     }
+//     // if (!wheelActive) {
+//     //   wheelStart(e);
+//     //   wheelActive = true;
+//     // }
+//     // wheel(e);
+//     // clearTimeout(touchTimeout);
+//     // touchTimeout = setTimeout(() => {
+//     //   wheelActive = false;
+//     //   wheelEnd(e);
+//     // }, 50);
+//   }
 
-    if (direction < 0) {
-      slider.prev();
-    }
-    // if (!wheelActive) {
-    //   wheelStart(e);
-    //   wheelActive = true;
-    // }
-    // wheel(e);
-    // clearTimeout(touchTimeout);
-    // touchTimeout = setTimeout(() => {
-    //   wheelActive = false;
-    //   wheelEnd(e);
-    // }, 50);
-  }
+//   slider.on("created", () => {
+//     slider.container.addEventListener("wheel", eventWheel, {
+//       passive: false,
+//     });
+//   });
+// };
 
-  slider.on("created", () => {
-    slider.container.addEventListener("wheel", eventWheel, {
-      passive: false,
-    });
-  });
-};
+const TEXT_DURATION = 0.8;
 
 function ProjectsPage(props) {
+  const mainRef = useRef();
+  const titleRef = useRef();
+  const prevTitle = useRef(-1);
+
   const [list, setList] = useState(projects?.data);
+
+  const [textRefs, setTextRefs] = useState([]); // project title (DOM Elements)
+  const [currentHover, setCurrentHover] = useState(-1); // index
+  const [titleFirstTimeInit, setTitleFirstTimeInit] = useState(false); // first time initialize
+
   const [isSliderCreated, setIsSliderCreated] = useState(false);
- 
+  const slideOptions = {
+    slides: {
+      perView: 4,
+    },
+    created(slider) {
+      setIsSliderCreated(true);
+      // slider.container.addEventListener("wheel", handleWheelEvent, {
+      //   passive: false,
+      // });
+    },
+    // slideChanged() {},
+  };
+
+  const handleSlideToFirstClick = (event) => {
+    event.preventDefault();
+    if (slider.current) slider.current.moveToIdx(0);
+  };
+
   const handleWheelEvent = (event) => {
     event.preventDefault();
     const direction =
@@ -101,51 +137,167 @@ function ProjectsPage(props) {
         ? event.deltaX
         : event.deltaY;
     if (direction > 0) {
-      if(slider.current) slider.current.next();
+      if (slider.current) slider.current.next();
     }
 
     if (direction < 0) {
-      if(slider.current) slider.current.prev();
+      if (slider.current) slider.current.prev();
     }
   };
 
   // TODO: add animation ease like locomotive scroll
-  const [sliderRef, slider] = useKeenSlider(
-    {
-      slides: {
-        perView: 4,
-      },
-      created(slider) {
-        setIsSliderCreated(true);
-        // console.log("slider was created", slider.container);
-        // slider.container.addEventListener("wheel", handleWheelEvent, {
-        //   passive: false,
-        // });
-      },
-      // slideChanged() {},
-    },
-    [
-      // plugins
-      // WheelControls,
-    ]
-  );
+  const [sliderRef, slider] = useKeenSlider(slideOptions, [
+    // plugins
+    // WheelControls,
+  ]);
 
   const initWheel = () => {
+    try {
+      if (slider.current) {
+        // wheel on main => slider moves
+        mainRef.current.addEventListener("wheel", handleWheelEvent, true);
+      }
+    } catch (error) {
+      console.warn("[initWheel] error:", error);
+    }
 
-  }
-  
-
-  useEffect(() => {
-    
-    initWheel();
+    // when initWheel is done, call init to execute next initial func(s)
+    init();
 
     return () => {
-      
+      mainRef.current?.removeEventListener("wheel", handleWheelEvent);
+    };
+  };
+
+  /**
+   *  map refs to every project title
+   */
+  const initTexts = async () => {
+    console.time("initTexts");
+    setTextRefs(
+      Array(list.length)
+        .fill()
+        .map((val, i) => textRefs[i] || createRef())
+    );
+
+    console.timeEnd("initTexts");
+
+    return true;
+  };
+
+  const initAnimateTexts = () => {
+    for (let i = 0; i < textRefs.length; i++) {
+      gsap.set(textRefs[i].current, {
+        opacity: 0,
+        y: "100%",
+      });
     }
-  }, [isSliderCreated])
-  
+  };
+
+  const awake = async () => {
+    // load extra stuffs
+    initTexts();
+    // console.log("textRefs[i]", textRefs.length);
+    setTitleFirstTimeInit(true);
+    return true;
+  };
+
+  const init = async () => {
+    await awake();
+
+    // emit event loaded to preloader here ?
+    sendEvent(AppEvent.PAGE_LOADED);
+  };
+
+  useEffect(() => {
+    // let removeListener = initWheel();
+    let removeListener;
+    if (isSliderCreated) {
+      removeListener = initWheel();
+    }
+
+    return removeListener;
+  }, [isSliderCreated]);
+
+  useEffect(() => {
+    if (list.length > 0) {
+      if (titleFirstTimeInit) {
+        // initTexts in awake at the first time
+        // set refs to textRefs
+        initTexts();
+      }
+
+      // refresh keen-slider
+      if (slider?.current) {
+        slider?.current.track.init();
+        slider?.current.update(slideOptions);
+      }
+    } else {
+      // run once
+      // TODO: should init after fetching data, currently at mounting time
+      init();
+    }
+  }, [JSON.stringify(list)]);
+
+  useLayoutEffect(() => {
+    if (textRefs.length) {
+      initAnimateTexts();
+    }
+  }, [textRefs.length]);
+
+  useEffect(() => {
+    // slider out focus (-1) => reanimate title
+
+    if (currentHover !== -1) {
+      // project hovered
+      gsap.to(titleRef.current, {
+        opacity: 1,
+        y: "-100%",
+        duration: TEXT_DURATION,
+      });
+      gsap.fromTo(
+        textRefs[currentHover]?.current,
+        { autoAlpha: 0, y: "100%" },
+        {
+          autoAlpha: 1,
+          y: "0",
+          duration: TEXT_DURATION,
+        }
+      );
+    } else {
+      // project leave
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: "100%" },
+        {
+          duration: TEXT_DURATION,
+          opacity: 1,
+          y: "0%",
+        }
+      );
+    }
+    // console.log("prevTitle.current", prevTitle.current);
+    if (prevTitle.current != -1) {
+      // console.log("go", prevTitle.current);
+      gsap.to(textRefs[prevTitle.current].current, {
+        duration: TEXT_DURATION,
+        y: "-200%",
+        autoAlpha: 0,
+      });
+    }
+
+    prevTitle.current = currentHover;
+  }, [currentHover]);
+  // const fakeUpdateList = async () => {
+  //   setList([...list, ...projects?.data]);
+  // };
+
   return (
-    <main className="projects-page relative">
+    <main className="projects-page relative" ref={mainRef}>
+      {/* <button className="btn fixed z-[800]" onClick={fakeUpdateList}>
+        test
+      </button> */}
+
       <Background />
       <Section className="first page__holder h-screen w-screen overflow-hidden">
         <Container className="h-full">
@@ -154,9 +306,25 @@ function ProjectsPage(props) {
               <h3 className="text__left text-xl font-light italic">
                 Selected works <br /> from 2019
               </h3>
-              <h1 className="text__title font-bold text-8xl text-center text-primary-red uppercase font-serif  ">
-                Projects
-              </h1>
+              <div className="text__title relative flex-1 py-4 overflow-hidden">
+                <h1
+                  className="text-content--main font-bold text-8xl text-center text-primary-red uppercase font-serif"
+                  ref={titleRef}
+                >
+                  Projects
+                </h1>
+                {list.length > 0 &&
+                  list.map((each, index) => (
+                    <h3
+                      key={`t_${index}`}
+                      className="absolute-center w-full text-content--sub break-words font-bold text-8xl text-center text-blue-bell uppercase font-serif"
+                      ref={textRefs[index]}
+                    >
+                      {each.title}
+                    </h3>
+                  ))}
+              </div>
+
               <h3 className="text__right text-xl font-light italic text-right">
                 Scroll to <br /> discover
               </h3>
@@ -165,21 +333,11 @@ function ProjectsPage(props) {
               <div className="projects w-full keen-slider" ref={sliderRef}>
                 {list.map((each, index) => (
                   <div className="keen-slider__slide project__wrap" key={index}>
-                    <div className="project-item">
-                      <h3 className="item__index text-right">
-                        {StringExtra.makeSpecificDigitNumber(index + 1, 2)}
-                      </h3>
-                      <div className="item__figure bg-primary-white">
-                        <div
-                          className="img img-cover w-100 scale-ratio"
-                          style={{
-                            backgroundImage: `url(${asset(
-                              "/img/examples/w-1.jpg"
-                            )})`,
-                          }}
-                        />
-                      </div>
-                    </div>
+                    <ProjectItem
+                      index={index}
+                      data={each}
+                      setCurrentHover={setCurrentHover}
+                    />
                   </div>
                 ))}
               </div>
@@ -219,7 +377,7 @@ function ProjectsPage(props) {
             <div className="nav__btns">
               <button
                 className="btn-icon bg-primary-white hover:bg-solitude text-base"
-                // onClick={handleScrollToTopClick}
+                onClick={handleSlideToFirstClick}
               >
                 <IconArrowLeft className="h-4" />
               </button>
@@ -295,10 +453,17 @@ function ProjectsPage(props) {
         }
         .text__left,
         .text__right {
-          flex: 1 1 18%;
+          flex: 0 1 18%;
         }
         .projects {
           overflow: visible;
+        }
+
+        .text-content--main {
+          line-height: 150%;
+        }
+        .text-content--sub {
+          line-height: 80%;
         }
         .project-title {
           margin: 1.75rem 0;
@@ -324,24 +489,18 @@ function ProjectsPage(props) {
         .nav__holder {
           height: ${sideNavW}px;
         }
-        .project__wrap {
-          &:first-of-type {
-            .item__figure {
-              border-left-width: 1px;
-            }
-          }
-        }
-        .item__figure {
-          padding: 10px;
-          border-style: solid;
-          border-width: 1px 1px 1px 0;
-          border-color: rgba(88, 88, 88, 0.1);
-        }
       `}</style>
       <style jsx global>{`
         .projects-page {
           .page__holder {
             padding-bottom: ${sideNavW}px;
+          }
+          .project__wrap {
+            &:first-of-type {
+              .item__figure {
+                border-left-width: 1px;
+              }
+            }
           }
         }
       `}</style>

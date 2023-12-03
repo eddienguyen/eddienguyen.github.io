@@ -19,5 +19,7 @@ export const sendEvent = (eventName = "", detail) => {
 export const listenEvent = (eventName = "", handler, context = document) => {
   context.addEventListener(eventName, handler, true);
   // return a cleanup function for useEffect in react
-  return () => context.removeEventListener(eventName, handler);
+  return () => {
+    context.removeEventListener(eventName, handler);
+  };
 };

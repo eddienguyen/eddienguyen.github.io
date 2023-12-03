@@ -1,8 +1,11 @@
 "use client";
 // import { useEventEmitter } from 'ahooks';
-import { createContext, useEffect, useState, useRef } from "react";
+import { createContext, useEffect, useState, useRef, useReducer } from "react";
 import Preloader from "../Preloader";
 import DeviceHelper from "@/plugins/utils/DeviceHelper";
+import { listenEvent } from "@/plugins/utils/events";
+import AppEvent from "@/modules/constants/event_names";
+import { useTaskReducer } from "./LoadingReducer";
 // listener usage:
 // - yield some_value:
 // listener.emit({
@@ -36,7 +39,7 @@ import DeviceHelper from "@/plugins/utils/DeviceHelper";
  * @property { Boolean } visibleNav
  * @property { Function } setVisibleMenu
  * @property {  } setVisibleNav
- * @property { String } loadingState
+//  * @property { String } loadingState
  */
 /** @type {import('react').Context<GeneralContext>} */
 export const UIContext = createContext({});
@@ -48,12 +51,14 @@ export const UIContext = createContext({});
  */
 function UIProvider({ direction = "vertical", ...props }) {
   const timeout = useRef(null);
-  const [loadingState, setLoadingState] = useState("new");
+  // const [loadingState, setLoadingState] = useState();
   const [visibleMenu, setVisibleMenu] = useState(false); // visible scrolling nav
   const [visibleNav, setVisibleNav] = useState(false); // visible side nav
 
+  const [loadingTask, dispatch] = useTaskReducer();
+
   const handleResize = () => {
-    setLoadingState("init");
+    updateResizingState(false);
     if (DeviceHelper.isMobile()) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
@@ -61,6 +66,21 @@ function UIProvider({ direction = "vertical", ...props }) {
       document.body.style.overflow = "unset";
       document.documentElement.style.overflow = "unset";
     }
+    updateResizingState(true);
+  };
+
+  const handlePageLoaded = (event) => {
+    dispatch({
+      type: "page_loaded",
+      value: true,
+    });
+  };
+
+  const updateResizingState = (isDone = false) => {
+    dispatch({
+      type: "resizing",
+      value: isDone,
+    });
   };
 
   //   const listener = useEventEmitter();
@@ -84,27 +104,44 @@ function UIProvider({ direction = "vertical", ...props }) {
       });
       window.scrollTo(0, 0); // TODO: move this on pre-loading calculation
       handleResize();
-      setLoadingState("init");
     })();
+
     window.addEventListener("resize", handleResize);
+
+    // listen for page.js loaded
+    const removeListener = listenEvent(AppEvent.PAGE_LOADED, handlePageLoaded);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      removeListener();
     };
-  }, [direction]);
+  }, []);
 
   useEffect(() => {
-    if (loadingState === "init") {
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(() => {
-        setLoadingState("done");
-      }, 500);
-    }
+    // if (loadingState === "init") {
+    //   clearTimeout(timeout.current);
+    //   timeout.current = setTimeout(() => {
+    //     setLoadingState("done");
+    //   }, 500);
+    // }
+
+    if (loadingTask.overall === "initializing") {
+      if (loadingTask.init.isResizingDone && loadingTask.init.isPageLoaded) {
+        clearTimeout(timeout.current);
+        timeout.current = setTimeout(() => {
+          dispatch({
+            type: "overall",
+            value: "done",
+          });
+        }, 300);
+      }
+    } else return;
     return () => {
       clearTimeout(timeout.current);
     };
-  }, [loadingState]);
+  }, [JSON.stringify(loadingTask)]);
 
+  const loadingState = loadingTask.overall;
   return (
     <UIContext.Provider
       value={{

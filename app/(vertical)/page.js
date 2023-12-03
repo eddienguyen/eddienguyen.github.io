@@ -2,7 +2,7 @@
 // import Features from "@/components/Features";
 // import Services from "@/components/Services";
 // import { ParallaxProvider } from "react-scroll-parallax";
-import { useContext } from "react";
+import { useContext, useLayoutEffect } from "react";
 
 import Header from "@/components/Header";
 import MoreIntro from "@/components/MoreIntro";
@@ -13,9 +13,21 @@ import SectionContactMe from "@/components/ContactMe";
 import SectionContactAdress from "@/components/ContactAddress";
 import { UIContext } from "@/components/contexts/UIProvider";
 import SideNav from "@/components/SideNav";
+import { sendEvent } from "@/plugins/utils/events";
+import AppEvent from "@/modules/constants/event_names";
 
 export default function Home({ children }) {
   const { loadingState } = useContext(UIContext);
+
+  const init = async () => {
+    // wait for extra stuff
+    sendEvent(AppEvent.PAGE_LOADED);
+  };
+
+  useLayoutEffect(() => {
+    init();
+  }, []);
+
   return (
     <main
       className={`${
