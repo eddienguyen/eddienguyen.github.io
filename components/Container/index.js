@@ -1,3 +1,5 @@
+"use client"
+
 import { sizes } from "styles/theme/media";
 
 function Container(props) {
