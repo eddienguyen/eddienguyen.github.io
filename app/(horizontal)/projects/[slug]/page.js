@@ -1,56 +1,71 @@
-"use client";
-
-import { useRef, useState } from "react";
-import { useKeenSlider } from "keen-slider/react";
-
-// export async function generateMetadata({ params, searchParams }) {
-//   // read route params
-//   const slug = params.slug;
 import projects from "public/data/projects.json";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import ProjectCard from "@/components/ProjectCard";
 
-//   console.log("[generateMetadata] slug:", slug);
+import UIProjectDetail from "./UIProjectDetail";
+/**
+ *
+ * @param {Object} props
+ * @param {Promise} parent - A promise of the resolved metadata from parent route segments.
+ * @returns
+ */
+export async function generateMetadata({ params, searchParams }, parent) {
+  // read route params
+  const slug = params.slug;
 
-//   return {
-//     title: slug,
-//     openGraph: {
-//       // images: ["/some-specific-page-image.jpg", ...previousImages],
-//     },
-//   };
-// }
+  // optionally access and extend (rather than replace) parent metadata
+  // const previousImages = (await parent).openGraph?.images || [];
 
-export default function ProjectDetail({ params: { slug = "" }, ...props }) {
-  const [list, setList] = useState(projects?.data);
-  const [sliderRef, slider] = useKeenSlider(
-    {
-      slides: {
-        perView: 3,
-      },
-      // slideChanged() {},
+  return {
+    title: slug,
+    openGraph: {
+      // images: ["/some-specific-page-image.jpg", ...previousImages],
     },
-    [
-      // plugins
-    ]
-  );
-  return (
-    <main>
-      <Section className="first page__holder h-screen w-screen">
-        <Container className="h-full">
-          <div className="text__holder flex-1 flex items-center justify-center">
-            <h3>Selected works from 2019</h3>
+  };
+}
 
-            <h1 className="section-title mt-0 mb-8 font-bold text-5xl text-center text-primary-red uppercase font-serif">
-              ProjectDetail - {slug}
-            </h1>
-            <h3>Scroll to discover</h3>
-          </div>
-        </Container>
-      </Section>
-      <div className="bot-nav fixed bottom-0 left-0 right-0">
-        <Container></Container>
-      </div>
+/**
+ * to statically generate routes at build time instead of on-demand at request time.
+ * Example Route /product/[id] - generateStaticParams Return Type: { id: string }[]
+ * Example Route /products/[category]/[product]	- generateStaticParams Return Type:{ category: string, product: string }[]
+ * @returns list of `(object)params` to populate the [slug] dynamic segment where each object represents the populated dynamic segments of a single route.
+ */
+export async function generateStaticParams() {
+  const allProjects = projects?.data || [];
+  return allProjects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+async function getDataBySlug(slug = "") {
+  const allProjects = projects?.data || [];
+  const target = allProjects.find((project) => project.slug === slug);
+
+  // const res = await fetch("https://api.example.com/...");
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  if (!target) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  // return target.json();
+  return target;
+}
+
+/**
+ * Multiple versions of this page will be statically generated
+ * using the `params` returned by `generateStaticParams`
+ * @param {Object} props
+ * @returns
+ */
+export default async function ProjectDetail({
+  params: { slug = "" },
+  ...props
+}) {
+  const projectData = await getDataBySlug(slug);
+  return (
+    <main className="project-detail-page">
+      <UIProjectDetail data={projectData} slug={slug} />
     </main>
   );
 }

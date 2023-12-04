@@ -34,12 +34,12 @@
             "title": "Atherlabs",
             "year": "2022",
             "category": "Website",
-            "thumbnail": "img/examples/w-1.jpg",
+            "thumbnail": "/img/examples/w-1.jpg",
             "opening": "Landing page for a NFT game company, with smooth-scrolling experience with 3D effects.",
             "media": [
-                "img/examples/ather-coming-soon-bg.jpg",
-                "img/examples/ather-std-lal.jpg",
-                "img/examples/ather-std-jo.jpg"
+                "/img/examples/ather-coming-soon-bg.jpg",
+                "/img/examples/ather-std-lal.jpg",
+                "/img/examples/ather-std-jo.jpg"
             ],
             "permalink": "",
             "role": "Front-end Developer",
@@ -99,10 +99,10 @@
             "title": "Leap The W3",
             "year": "2018",
             "category": "Webapp",
-            "thumbnail": "img/examples/w-3.jpg",
+            "thumbnail": "/img/examples/w-3.jpg",
             "opening": "Leapthew3 is a team project that we worked in 2018 as a graduation project.",
             "media": [
-
+                
             ],
             "permalink": "",
             "role": "fullstack developer",
@@ -132,7 +132,7 @@
             "title": "BBTopia",
             "year": "2020",
             "category": "Webapp",
-            "thumbnail": "img/examples/w-5.jpg",
+            "thumbnail": "/img/examples/w-5.jpg",
             "opening": " Web application for beauty services finding in all Asia",
             "media": [
 

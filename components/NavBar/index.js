@@ -20,6 +20,7 @@ class NavBar extends Component {
     // headerHeight: typeof window !== undefined ? window.innerHeight : 0,
     headerHeight: 0,
     fadeInDistance: 40,
+    position: "absolute",
   };
 
   constructor(props) {
@@ -81,9 +82,10 @@ class NavBar extends Component {
 
   render() {
     const { visibleMenu } = this.context;
+    const defaultPos = this.props.position;
     return (
       <div>
-        <DefaultNav>
+        <DefaultNav position={defaultPos}>
           <Container>
             <div className="grid grid-cols-6">
               <div className="col-span-1">

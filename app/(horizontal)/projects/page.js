@@ -1,38 +1,19 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  useLayoutEffect,
-  createRef,
-  useCallback,
-} from "react";
+import { useState, useEffect, useRef, useLayoutEffect, createRef } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import dynamic from "next/dynamic";
+import gsap from "gsap";
 
-import AppLink from "@/components/AppLink";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
-import asset from "@/plugins/assets";
 import projects from "public/data/projects.json";
-import personalInfo from "public/data/about.json";
 import Background from "@/components/Background";
 // import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import {
-  IconFacebook,
-  IconInsta,
-  IconYoutube,
-  IconArrowLeft,
-} from "@/styles/theme/icons";
-import { border, sideNavW } from "@/styles/theme/variables";
+import { sideNavW } from "@/styles/theme/variables";
 import { sendEvent } from "@/plugins/utils/events.js";
 import AppEvent from "@/modules/constants/event_names";
 import ProjectItem from "./ProjectItem";
-import gsap from "gsap";
-const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
-  ssr: false,
-});
+import BotNav from "@/components/NavBar/BotNav";
 
 // const WheelControls = (slider) => {
 //   let touchTimeout;
@@ -126,7 +107,6 @@ function ProjectsPage(props) {
   };
 
   const handleSlideToFirstClick = (event) => {
-    event.preventDefault();
     if (slider.current) slider.current.moveToIdx(0);
   };
 
@@ -363,43 +343,11 @@ function ProjectsPage(props) {
         </Container>
       </Section>
       {/* bottomnav */}
-      <div className="bot-nav fixed bottom-0 left-0 right-0">
-        <Container>
-          <div className="nav__holder w-full flex justify-between items-center">
-            <div className="nav__socials flex items-center">
-              <AppLink
-                href={personalInfo?.facebook}
-                target="_blank"
-                className="social__link flex items-center w-4 h-4 mx-4 text-solitude hover:text-blue-deep-sky transition-sm"
-              >
-                <IconFacebook />
-              </AppLink>
-              <AppLink
-                href={personalInfo?.instagram}
-                target="_blank"
-                className="social__link flex items-center w-4 h-4 mx-4 text-solitude hover:text-blue-deep-sky transition-sm"
-              >
-                <IconInsta />
-              </AppLink>
-              <AppLink
-                href={personalInfo?.youtube}
-                target="_blank"
-                className="social__link flex items-center w-4 h-4 mx-4 text-solitude hover:text-blue-deep-sky transition-sm"
-              >
-                <IconYoutube />
-              </AppLink>
-            </div>
-            <div className="nav__btns">
-              <button
-                className="btn-icon bg-primary-white hover:bg-solitude text-base"
-                onClick={handleSlideToFirstClick}
-              >
-                <IconArrowLeft className="h-4" />
-              </button>
-            </div>
-          </div>
-        </Container>
-      </div>
+      <BotNav
+        className="fixed bottom-0 left-0 right-0"
+        onGoLeftClick={handleSlideToFirstClick}
+      />
+
       {/* <div className="flex flex-col justify-center items-center">
         <h3 className="project-title">
           <AppLink
@@ -496,13 +444,6 @@ function ProjectsPage(props) {
               transform: scale(1.05);
             }
           }
-        }
-        .bot-nav {
-          // test
-          // border-top: 1px solid red;
-        }
-        .nav__holder {
-          height: ${sideNavW}px;
         }
       `}</style>
       <style jsx global>{`

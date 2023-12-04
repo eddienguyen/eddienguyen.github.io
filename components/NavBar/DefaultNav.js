@@ -1,12 +1,12 @@
 import { headerIndex, headerSpace } from "@/styles/theme/variables";
 
-function DefaultNav(props) {
+function DefaultNav({ position = "absolute", ...props }) {
   return (
     <div className="default-nav">
       {props.children}
       <style jsx>{`
         .default-nav {
-          position: absolute;
+          position: ${position};
           width: 100%;
           padding-top: ${headerSpace}px;
           padding-bottom: ${headerSpace}px;

@@ -1,3 +1,5 @@
+"use client";
+
 import { black, headerHeight } from "@/styles/theme/variables";
 
 function Section(props) {

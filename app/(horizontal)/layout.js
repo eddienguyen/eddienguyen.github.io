@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <ClientMasterPage direction="horizontal">
-      <NavBar />
+      <NavBar position="fixed" />
       {children}
     </ClientMasterPage>
   );
