@@ -14,7 +14,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "push": "npm version patch && git push",
     "push-minor": "npm version minor && git push",
-    "push-major": "npm version major && git push"
+    "push-major": "npm version major && git push",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -30,10 +32,20 @@
     "sass": "^1.69.5"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "7.6.3",
+    "@storybook/addon-interactions": "7.6.3",
+    "@storybook/addon-links": "7.6.3",
+    "@storybook/addon-onboarding": "1.0.9",
+    "@storybook/blocks": "7.6.3",
+    "@storybook/nextjs": "7.6.3",
+    "@storybook/react": "7.6.3",
+    "@storybook/test": "7.6.3",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "^13.4.4",
+    "eslint-plugin-storybook": "^0.6.15",
     "postcss": "^8",
+    "storybook": "7.6.3",
     "tailwindcss": "^3.3.0"
   }
 }

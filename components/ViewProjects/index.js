@@ -5,7 +5,6 @@ import { IconArrowLeft, IconArrowRight } from "@/styles/theme/icons";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import { black } from "@/styles/theme/variables";
-import AppLink from "../AppLink";
 import projects from "public/data/projects.json";
 import { useState } from "react";
 
