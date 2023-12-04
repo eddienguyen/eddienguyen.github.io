@@ -98,7 +98,7 @@ const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
 //   });
 // };
 
-const TEXT_DURATION = 0.8;
+const TEXT_DURATION = 0.7;
 
 function ProjectsPage(props) {
   const mainRef = useRef();
@@ -173,14 +173,11 @@ function ProjectsPage(props) {
    *  map refs to every project title
    */
   const initTexts = async () => {
-    console.time("initTexts");
     setTextRefs(
       Array(list.length)
         .fill()
         .map((val, i) => textRefs[i] || createRef())
     );
-
-    console.timeEnd("initTexts");
 
     return true;
   };
@@ -189,7 +186,10 @@ function ProjectsPage(props) {
     for (let i = 0; i < textRefs.length; i++) {
       gsap.set(textRefs[i].current, {
         opacity: 0,
-        y: "100%",
+        // y: "100%",
+        // y: "-50%",
+        // x: "-50%",
+        top: "100%",
       });
     }
   };
@@ -250,22 +250,32 @@ function ProjectsPage(props) {
 
     if (currentHover !== -1) {
       // project hovered
+      gsap.killTweensOf(textRefs[currentHover]?.current);
+
       gsap.to(titleRef.current, {
-        opacity: 1,
-        y: "-100%",
+        opacity: 0,
+        y: "-120%",
         duration: TEXT_DURATION,
+        ease: "sine.out",
       });
       gsap.fromTo(
         textRefs[currentHover]?.current,
-        { autoAlpha: 0, y: "100%" },
+        {
+          autoAlpha: 0,
+          // y: "100%",
+          top: "120%",
+        },
         {
           autoAlpha: 1,
-          y: "0",
+          // y: "-50%",
+          top: "50%",
           duration: TEXT_DURATION,
+          ease: "sine.out",
         }
       );
     } else {
       // project leave
+      gsap.killTweensOf(titleRef.current);
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, y: "100%" },
@@ -273,16 +283,20 @@ function ProjectsPage(props) {
           duration: TEXT_DURATION,
           opacity: 1,
           y: "0%",
+          ease: "sine.out",
         }
       );
     }
     // console.log("prevTitle.current", prevTitle.current);
     if (prevTitle.current != -1) {
-      // console.log("go", prevTitle.current);
+      gsap.killTweensOf(textRefs[prevTitle.current].current);
+
       gsap.to(textRefs[prevTitle.current].current, {
         duration: TEXT_DURATION,
-        y: "-200%",
+        // y: "-200%",
+        top: "-70%",
         autoAlpha: 0,
+        ease: "sine.out",
       });
     }
 
@@ -337,6 +351,7 @@ function ProjectsPage(props) {
                       index={index}
                       data={each}
                       setCurrentHover={setCurrentHover}
+                      currentHover={currentHover}
                     />
                   </div>
                 ))}

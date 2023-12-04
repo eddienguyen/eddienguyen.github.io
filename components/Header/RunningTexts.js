@@ -9,6 +9,7 @@ function RunningTexts(props) {
   const mainTextRef = useRef();
   const nextTextRef = useRef();
   const _direction = useRef(1);
+  const _anim = useRef();
   const _class = props.className || "";
 
   let _xPercent = 0;
@@ -16,10 +17,13 @@ function RunningTexts(props) {
   let _delta = 0.1;
 
   useEffect(() => {
+    const node = runningTextsRef.current;
+    const mainTextNode = runningTextsRef.current;
+    const nextTextNode = runningTextsRef.current;
     gsap.registerPlugin(ScrollTrigger);
-    requestAnimationFrame(animation);
+    _anim.current = requestAnimationFrame(animation);
 
-    gsap.to(runningTextsRef.current, {
+    gsap.to(node, {
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
@@ -36,7 +40,12 @@ function RunningTexts(props) {
       x: `-=500px`,
     });
 
-    return () => {};
+    return () => {
+      gsap.killTweensOf(node);
+      gsap.killTweensOf(mainTextNode);
+      gsap.killTweensOf(nextTextNode);
+      cancelAnimationFrame(_anim.current);
+    };
   }, []);
 
   const animation = () => {
@@ -56,7 +65,7 @@ function RunningTexts(props) {
     gsap.set(mainTextRef.current, { xPercent: _xPercent });
     gsap.set(nextTextRef.current, { xPercent: _xPercent });
     _xPercent += _delta * _direction.current;
-    requestAnimationFrame(animation);
+    _anim.current = requestAnimationFrame(animation);
   };
 
   return (

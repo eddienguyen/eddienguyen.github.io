@@ -37,22 +37,23 @@ function SideNav(props) {
   };
 
   useLayoutEffect(() => {
+    const sideNavNode = sideNavRef.current;
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(ScrollToPlugin);
-    gsap.to(sideNavRef.current, {
+    gsap.to(sideNavNode, {
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
         end: window.innerHeight,
         onLeave: () => {
-          gsap.to(sideNavRef.current, {
+          gsap.to(sideNavNode, {
             x: 0,
             duration: 0.65,
             ease: "sine.out",
           });
         },
         onEnterBack: () => {
-          gsap.to(sideNavRef.current, {
+          gsap.to(sideNavNode, {
             x: sideNavW,
             duration: 0.65,
             ease: "sine.in",
@@ -60,7 +61,9 @@ function SideNav(props) {
         },
       },
     });
-    return () => {};
+    return () => {
+      gsap.killTweensOf(sideNavNode);
+    };
   }, []);
 
   return (

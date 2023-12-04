@@ -44,6 +44,10 @@
   .absolute-cover {
     @apply absolute top-0 left-0 bottom-0 right-0;
   }
+  .absolute-center {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    // transform: translate(-50%, -50%);
+  }
 }
 
 :root {
@@ -204,13 +208,6 @@ ul li {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.absolute-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .transition-sm {

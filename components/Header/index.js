@@ -51,8 +51,8 @@ function Header(props) {
   const manageMouseMove = (event) => {
     const x = event.clientX / persHolder.current.offsetWidth;
     const y = event.pageY / persHolder.current.offsetHeight;
-    const _rotateX = x * (MAX_ROTATE_X * 2) + -MAX_ROTATE_X;
-    const _rotateY = y * (MAX_ROTATE_Y * 2) + -MAX_ROTATE_Y;
+    const _rotateX = x * (MAX_ROTATE_X * 2) + -MAX_ROTATE_X; // * (max - min) + min
+    const _rotateY = y * (MAX_ROTATE_Y * 2) + -MAX_ROTATE_Y; // * (max - min) + min
     const _perspective = window.innerWidth * 5 + "px"; // long used formula, 5 = some number
     persHolder.current.style.transform = `perspective(${_perspective}) rotateX(${_rotateY}deg) rotateY(${_rotateX}deg)`;
   };
@@ -85,9 +85,9 @@ function Header(props) {
   useEffect(() => {
     // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
+    const backgroundNode = backgroundRef.current;
     const init = () => {
       if (isInit) return;
-
       // capture on resize
       const _rect = galleryMediaRef.current?.getBoundingClientRect();
       _path.current.top = _rect.top;
@@ -104,7 +104,7 @@ function Header(props) {
           // markers: true,
         },
       });
-      timeline.from(backgroundRef.current, {
+      timeline.from(backgroundNode, {
         clipPath: `inset(${_path.current.top}px ${_path.current.right}px ${_path.current.bot}px ${_path.current.left}px)`,
       });
 
@@ -118,7 +118,9 @@ function Header(props) {
     if (loadingState === "done") {
       init();
     }
-    return () => {};
+    return () => {
+      gsap.killTweensOf(backgroundNode);
+    };
   }, [loadingState]);
 
   return (
