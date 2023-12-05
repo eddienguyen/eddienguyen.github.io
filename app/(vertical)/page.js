@@ -21,6 +21,7 @@ export default function Home({ children }) {
 
   const init = async () => {
     // wait for extra stuff
+    console.log("[Homepage] init");
     sendEvent(AppEvent.PAGE_LOADED);
   };
 

@@ -55,6 +55,8 @@ function UIProvider({ direction = "vertical", ...props }) {
   const [visibleMenu, setVisibleMenu] = useState(false); // visible scrolling nav
   const [visibleNav, setVisibleNav] = useState(false); // visible side nav
 
+  // children
+  const [mainUI, setMainUI] = useState(<></>);
   const [loadingTask, dispatch] = useTaskReducer();
 
   const handleResize = () => {
@@ -70,16 +72,24 @@ function UIProvider({ direction = "vertical", ...props }) {
   };
 
   const handlePageLoaded = (event) => {
+    console.log("[UIContext] handlePageLoaded");
     dispatch({
-      type: "page_loaded",
+      type: AppEvent.PAGE_LOADED,
       value: true,
     });
   };
 
   const updateResizingState = (isDone = false) => {
     dispatch({
-      type: "resizing",
+      type: AppEvent.PAGE_RESIZING,
       value: isDone,
+    });
+  };
+
+  const ready = () => {
+    dispatch({
+      type: "overall",
+      value: AppEvent.RENDERED,
     });
   };
 
@@ -111,6 +121,8 @@ function UIProvider({ direction = "vertical", ...props }) {
     // listen for page.js loaded
     const removeListener = listenEvent(AppEvent.PAGE_LOADED, handlePageLoaded);
 
+    // start rendering children
+    ready();
     return () => {
       window.removeEventListener("resize", handleResize);
       removeListener();
@@ -124,14 +136,17 @@ function UIProvider({ direction = "vertical", ...props }) {
     //     setLoadingState("done");
     //   }, 500);
     // }
-
-    if (loadingTask.overall === "initializing") {
+    if (loadingTask.overall === AppEvent.RENDERED) {
+      setMainUI(props.children);
+      return;
+    }
+    if (loadingTask.overall === AppEvent.INIT) {
       if (loadingTask.init.isResizingDone && loadingTask.init.isPageLoaded) {
         clearTimeout(timeout.current);
         timeout.current = setTimeout(() => {
           dispatch({
             type: "overall",
-            value: "done",
+            value: AppEvent.DONE_INIT,
           });
         }, 300);
       }
@@ -153,10 +168,10 @@ function UIProvider({ direction = "vertical", ...props }) {
         loadingState,
       }}
     >
-      <Preloader isLoading={loadingState !== "done"}>
+      <Preloader isLoading={loadingState !== AppEvent.DONE_INIT}>
         <h2>{loadingState}</h2>
       </Preloader>
-      {props.children}
+      {mainUI}
     </UIContext.Provider>
   );
 }
