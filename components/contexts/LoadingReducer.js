@@ -1,3 +1,4 @@
+import AppEvent from "@/modules/constants/event_names";
 import { useReducer } from "react";
 
 const taskReducer = (taskObj, action) => {
@@ -8,18 +9,19 @@ const taskReducer = (taskObj, action) => {
         overall: action.value,
       };
     }
-    case "page_loaded": {
+    case AppEvent.PAGE_LOADED: {
+      console.log("[LoadingReducer] page_loaded, action:", action);
       return {
-        overall: "initializing",
+        overall: AppEvent.INIT,
         init: {
           ...taskObj.init,
           isPageLoaded: action.value,
         },
       };
     }
-    case "resizing": {
+    case AppEvent.PAGE_RESIZING: {
       return {
-        overall: "initializing",
+        overall: AppEvent.INIT,
         init: {
           ...taskObj.init,
           isResizingDone: action.value,
@@ -33,7 +35,7 @@ const taskReducer = (taskObj, action) => {
 };
 
 const initialTask = {
-  overall: "new",
+  overall: AppEvent.NEW_MOUNTED,
   init: {
     isResizingDone: false,
     isPageLoaded: false,
