@@ -17,12 +17,12 @@ import { sendEvent } from "@/plugins/utils/events";
 import AppEvent from "@/modules/constants/event_names";
 
 export default function Home({ children }) {
-  const { loadingState } = useContext(UIContext);
+  const { loadingState, handlePageLoaded } = useContext(UIContext);
 
   const init = async () => {
     // wait for extra stuff
-    console.log("[Homepage] init");
-    sendEvent(AppEvent.PAGE_LOADED);
+    // sendEvent(AppEvent.PAGE_LOADED);
+    handlePageLoaded();
   };
 
   useLayoutEffect(() => {
@@ -32,7 +32,7 @@ export default function Home({ children }) {
   return (
     <main
       className={`${
-        loadingState === "done" ? "opacity-100" : "opacity-0"
+        loadingState === AppEvent.DONE_INIT ? "opacity-100" : "opacity-0"
       } transition-all`}
     >
       <SideNav />

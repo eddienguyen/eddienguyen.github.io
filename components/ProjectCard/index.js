@@ -4,6 +4,8 @@ import ReactPlayer from "react-player";
 
 import { bluePeriwinkle } from "@/styles/theme/variables";
 import { VIDEO_TYPE } from "@/modules/constants/media";
+import AppLink from "../AppLink";
+import APP_ROUTES from "@/modules/constants/app_routes";
 
 function ProjectCard({ data = {}, ...props }) {
   const playerVideoRef = useRef();
@@ -32,6 +34,7 @@ function ProjectCard({ data = {}, ...props }) {
   const thumbnail = data?.thumbnail || "Ava-portrait.jpg";
   const video = data?.video || null;
   const videoType = data?.videoType || VIDEO_TYPE.LOCAL;
+  const slug = data?.slug || null;
 
   const renderMedia = () =>
     video ? (
@@ -100,6 +103,13 @@ function ProjectCard({ data = {}, ...props }) {
           </span> */}
         </div>
       </div>
+
+      {slug && (
+        <AppLink
+          href={APP_ROUTES.PROJECT_DETAIL.INDEX + slug}
+          className="absolute-cover"
+        />
+      )}
 
       <style jsx>{`
         .pj-card {

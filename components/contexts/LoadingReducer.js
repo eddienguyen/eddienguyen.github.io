@@ -3,31 +3,23 @@ import { useReducer } from "react";
 
 const taskReducer = (taskObj, action) => {
   switch (action.type) {
-    case "overall": {
+    case "loading": {
+      // console.log("[LoadingReducer] ", action.type, action.value);
       return {
         ...taskObj,
-        overall: action.value,
+        current: action.value,
       };
     }
-    case AppEvent.PAGE_LOADED: {
-      console.log("[LoadingReducer] page_loaded, action:", action);
-      return {
-        overall: AppEvent.INIT,
-        init: {
-          ...taskObj.init,
-          isPageLoaded: action.value,
-        },
-      };
-    }
-    case AppEvent.PAGE_RESIZING: {
-      return {
-        overall: AppEvent.INIT,
-        init: {
-          ...taskObj.init,
-          isResizingDone: action.value,
-        },
-      };
-    }
+    // case AppEvent.PAGE_RESIZING: {
+    //   // console.log("[LoadingReducer] ", action.type, action.value);
+    //   return {
+    //     current: AppEvent.INIT,
+    //     init: {
+    //       ...taskObj.init,
+    //       isResizingDone: action.value,
+    //     },
+    //   };
+    // }
     default: {
       throw Error("Unknown action: " + action.type);
     }
@@ -35,11 +27,7 @@ const taskReducer = (taskObj, action) => {
 };
 
 const initialTask = {
-  overall: AppEvent.NEW_MOUNTED,
-  init: {
-    isResizingDone: false,
-    isPageLoaded: false,
-  },
+  current: AppEvent.NEW_MOUNTED,
 };
 
 const useTaskReducer = (reducer = taskReducer, intial = initialTask) => {

@@ -5,10 +5,10 @@ export default [
     path: APP_ROUTES.ABOUT.INDEX,
     name: "about",
   },
-  // {
-  //   path: APP_ROUTES.PROJECTS.INDEX,
-  //   name: "projects",
-  // },
+  {
+    path: APP_ROUTES.PROJECTS.INDEX,
+    name: "projects",
+  },
   // {
   //   path: APP_ROUTES.STORIES.INDEX,
   //   name: "stories",

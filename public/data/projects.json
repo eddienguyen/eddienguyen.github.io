@@ -28,7 +28,8 @@
             ],
             "slug": "smith-it-smith",
             "video": "https://www.facebook.com/eddie.aquarious.96/videos/1461503510571314",
-            "videoType": "FB"
+            "videoType": "FB",
+            "teamSize": 2
         },
         {
             "title": "Atherlabs",
@@ -59,7 +60,8 @@
             ],
             "slug": "ather",
             "video": "",
-            "videoType": ""
+            "videoType": "",
+            "teamSize": 2
         },
         {
             "title": "Acnes.com.vn",
@@ -93,7 +95,8 @@
             ],
             "slug": "acnes",
             "video": "",
-            "videoType": ""
+            "videoType": "",
+            "teamSize": 2
         },
         {
             "title": "Leap The W3",
@@ -126,7 +129,8 @@
             ],
             "slug": "leap-the-w3",
             "video": "",
-            "videoType": ""
+            "videoType": "",
+            "teamSize": 2
         },
         {
             "title": "BBTopia",
@@ -157,7 +161,8 @@
             ],
             "slug": "bbtopia",
             "video": "",
-            "videoType": ""
+            "videoType": "",
+            "teamSize": 2
         }
     ]
 }

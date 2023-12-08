@@ -16,7 +16,7 @@ export default class AppEvent {
     return "interactive";
   }
   static get PAGE_LOADED() {
-    return "page_loaded"; // interactive phase
+    return "page_loaded"; // initial phase
   }
   static get PAGE_RESIZING() {
     return "resizing"; // interactive phase
@@ -27,5 +27,5 @@ export default class AppEvent {
   }
 }
 
-// new => rendered => initializing (page_loaded + resizing +...) =>  done
-// ___________________interative => done
+// new => rendered => page_loaded => initializing ( + resizing +...) =>  done
+// __________________________________resizing => done

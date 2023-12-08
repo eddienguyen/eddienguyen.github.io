@@ -1,7 +1,13 @@
 import Container from "@/components/Container";
 import { border } from "@/styles/theme/variables";
 
-function Background(props) {
+/**
+ *
+ * @param {Object} props - Background properties
+ * @param {string} [props.pos]=('fixed'|'absolute') - Background properties
+ * @returns {import('react').ComponentElement}
+ */
+function Background({ pos = "fixed", ...props }) {
   return (
     <div className="background bg-primary-white dark:bg-primary-black">
       <Container className="w-full h-full">
@@ -18,7 +24,7 @@ function Background(props) {
       </Container>
       <style jsx>{`
         .background {
-          position: fixed;
+          position: ${pos};
           left: 0;
           top: 0;
           width: 100vw;

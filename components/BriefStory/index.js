@@ -117,12 +117,12 @@ function BriefStory({
           >
             &ldquo;{description}&rdquo;
           </p>
-          <AppLink
+          {/* <AppLink
             href={APP_ROUTES.STORIES.INDEX}
             className="link-spacing"
           >
             read more
-          </AppLink>
+          </AppLink> */}
         </div>
       </div>
 

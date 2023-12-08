@@ -1,9 +1,16 @@
 "use client";
 // import { useEventEmitter } from 'ahooks';
-import { createContext, useEffect, useState, useRef, useReducer } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  useRef,
+  useReducer,
+  useContext,
+} from "react";
+import { usePathname } from "next/navigation";
 import Preloader from "../Preloader";
 import DeviceHelper from "@/plugins/utils/DeviceHelper";
-import { listenEvent } from "@/plugins/utils/events";
 import AppEvent from "@/modules/constants/event_names";
 import { useTaskReducer } from "./LoadingReducer";
 // listener usage:
@@ -39,7 +46,10 @@ import { useTaskReducer } from "./LoadingReducer";
  * @property { Boolean } visibleNav
  * @property { Function } setVisibleMenu
  * @property {  } setVisibleNav
-//  * @property { String } loadingState
+ * @property { String } loadingState
+ * @property { Function } handlePageLoaded
+ * @property { Boolean } isResizingDone
+ * @property {Function} handleResize
  */
 /** @type {import('react').Context<GeneralContext>} */
 export const UIContext = createContext({});
@@ -50,46 +60,90 @@ export const UIContext = createContext({});
  * @returns ReactComponent
  */
 function UIProvider({ direction = "vertical", ...props }) {
+  const pathname = usePathname();
+
   const timeout = useRef(null);
+  const scroll = useRef(null);
   // const [loadingState, setLoadingState] = useState();
   const [visibleMenu, setVisibleMenu] = useState(false); // visible scrolling nav
   const [visibleNav, setVisibleNav] = useState(false); // visible side nav
-
+  const [isResizingDone, setIsResizingDone] = useState(false);
   // children
-  const [mainUI, setMainUI] = useState(<></>);
   const [loadingTask, dispatch] = useTaskReducer();
 
   const handleResize = () => {
-    updateResizingState(false);
+    console.log("[UI] handleResize");
+    // setIsResizingDone(false);
     if (DeviceHelper.isMobile()) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
+      // if (direction === "horizontal") {
+      //   document.body.style.overflow = "hidden";
+      //   document.documentElement.style.overflow = "hidden";
+      // } else {
+      //   document.body.style.overflow = "unset";
+      //   document.documentElement.style.overflow = "unset";
+      // }
     }
-    updateResizingState(true);
+    // setIsResizingDone(true);
+    dispatch({
+      type: "loading",
+      value: AppEvent.PAGE_RESIZING,
+    });
   };
 
   const handlePageLoaded = (event) => {
-    console.log("[UIContext] handlePageLoaded");
     dispatch({
-      type: AppEvent.PAGE_LOADED,
-      value: true,
+      type: "loading",
+      value: AppEvent.PAGE_LOADED,
     });
   };
 
   const updateResizingState = (isDone = false) => {
+    setIsResizingDone(isDone);
+    return; // temporary remove resizing in load tasks
     dispatch({
-      type: AppEvent.PAGE_RESIZING,
-      value: isDone,
+      type: "loading",
+      value: AppEvent.PAGE_RESIZING,
     });
   };
 
   const ready = () => {
     dispatch({
-      type: "overall",
+      type: "loading",
       value: AppEvent.RENDERED,
+    });
+  };
+
+  const init = () => {
+    if (scroll.current && scroll.current.destroy) {
+      scroll.current.destroy();
+    }
+    if (direction == "vertical") {
+      // if (!scroll.current) {
+      (async () => {
+        const LocomotiveScroll = (await import("locomotive-scroll")).default;
+        scroll.current = new LocomotiveScroll({
+          lenisOptions: {
+            orientation: direction,
+          },
+        });
+        window.scrollTo(0, 0); // TODO: move this on pre-loading calculation
+      })();
+      // } else {
+      // scroll.resize();
+      // }
+      // } else {
+      //   if (scroll) {
+      //     scroll.destroy();
+      //     setScroll(null);
+      //   }
+    }
+
+    dispatch({
+      type: "loading",
+      value: AppEvent.DONE_INIT,
     });
   };
 
@@ -105,58 +159,77 @@ function UIProvider({ direction = "vertical", ...props }) {
   }, [visibleMenu]);
 
   useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll({
-        lenisOptions: {
-          orientation: direction,
-        },
-      });
-      window.scrollTo(0, 0); // TODO: move this on pre-loading calculation
-      handleResize();
-    })();
+    // this load just once on every horizontal page => reinit ?
+
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 
-    // listen for page.js loaded
-    const removeListener = listenEvent(AppEvent.PAGE_LOADED, handlePageLoaded);
-
-    // start rendering children
+    // mounted ?
     ready();
+
+    // cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
-      removeListener();
+      console.log("[UI] removing scroll", scroll);
+      // scroll && scroll.destroy();
+      // removeListener();
     };
   }, []);
 
+  // useEffect(() => {
+  // dispatch event "resize" for locomotive scroll to listen
+
+  //   console.log("[UIContext] RESIZING", isResizingDone);
+  //   if (isResizingDone) {
+  //     init();
+  //   }
+  //   // or destroy ?
+  //   // if (scroll) {
+  //   //   scroll.destroy();
+  //   //   setScroll(null);
+  //   // }
+
+  //   return () => {};
+  // }, [isResizingDone]);
+
   useEffect(() => {
-    // if (loadingState === "init") {
-    //   clearTimeout(timeout.current);
-    //   timeout.current = setTimeout(() => {
-    //     setLoadingState("done");
-    //   }, 500);
-    // }
-    if (loadingTask.overall === AppEvent.RENDERED) {
-      setMainUI(props.children);
-      return;
+    console.log("[UI] current", loadingTask.current);
+
+    if (loadingTask.current === AppEvent.PAGE_LOADED) {
+      // listen for page.js loaded
+
+      // init locomotive ?
+      // init();
+      // handleResize();
+      dispatch({
+        type: "loading",
+        value: AppEvent.INIT,
+      });
     }
-    if (loadingTask.overall === AppEvent.INIT) {
-      if (loadingTask.init.isResizingDone && loadingTask.init.isPageLoaded) {
-        clearTimeout(timeout.current);
-        timeout.current = setTimeout(() => {
-          dispatch({
-            type: "overall",
-            value: AppEvent.DONE_INIT,
-          });
-        }, 300);
-      }
-    } else return;
+    if (loadingTask.current === AppEvent.INIT) {
+      handleResize();
+      // clearTimeout(timeout.current);
+      // timeout.current = setTimeout(() => {
+      //   dispatch({
+      //     type: "loading",
+      //     value: AppEvent.DONE_INIT,
+      //   });
+      // }, 300);
+    }
+
+    if (loadingTask.current === AppEvent.PAGE_RESIZING) {
+      console.log("[UI] handle RESIZING");
+
+      init();
+    }
+
     return () => {
       clearTimeout(timeout.current);
     };
-  }, [JSON.stringify(loadingTask)]);
+  }, [loadingTask.current]);
 
-  const loadingState = loadingTask.overall;
+  const loadingState = loadingTask.current;
   return (
     <UIContext.Provider
       value={{
@@ -166,14 +239,26 @@ function UIProvider({ direction = "vertical", ...props }) {
         setVisibleMenu,
         setVisibleNav,
         loadingState,
+        handlePageLoaded,
+        scroll,
+        isResizingDone,
+        handleResize,
       }}
     >
       <Preloader isLoading={loadingState !== AppEvent.DONE_INIT}>
         <h2>{loadingState}</h2>
       </Preloader>
-      {mainUI}
+      {props.children}
     </UIContext.Provider>
   );
 }
+
+export const useUICtx = () => {
+  const ctx = useContext(UIContext);
+  if (ctx === undefined) {
+    throw new Error("useUICtx must be used within UIProvider");
+  }
+  return ctx;
+};
 
 export default UIProvider;
