@@ -1,6 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef, useLayoutEffect, createRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+  createRef,
+  Fragment,
+  useContext,
+} from "react";
 import { useKeenSlider } from "keen-slider/react";
 import gsap from "gsap";
 
@@ -14,6 +22,9 @@ import { sendEvent } from "@/plugins/utils/events.js";
 import AppEvent from "@/modules/constants/event_names";
 import ProjectItem from "./ProjectItem";
 import BotNav from "@/components/NavBar/BotNav";
+import AppLink from "@/components/AppLink";
+import APP_ROUTES from "@/modules/constants/app_routes";
+import { UIContext } from "@/components/contexts/UIProvider";
 
 // const WheelControls = (slider) => {
 //   let touchTimeout;
@@ -85,6 +96,8 @@ function ProjectsPage(props) {
   const mainRef = useRef();
   const titleRef = useRef();
   const prevTitle = useRef(-1);
+
+  const { handlePageLoaded } = useContext(UIContext);
 
   const [list, setList] = useState(projects?.data);
 
@@ -185,8 +198,10 @@ function ProjectsPage(props) {
   const init = async () => {
     await awake();
 
+    // console.log("[Projectpage] init");
     // emit event loaded to preloader here ?
-    sendEvent(AppEvent.PAGE_LOADED);
+    // sendEvent(AppEvent.PAGE_LOADED);
+    handlePageLoaded();
   };
 
   useEffect(() => {

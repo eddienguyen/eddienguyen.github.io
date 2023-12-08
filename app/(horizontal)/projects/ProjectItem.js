@@ -6,7 +6,7 @@ import APP_ROUTES from "@/modules/constants/app_routes";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import MathExtra from "@/plugins/utils/MathExtra";
-import { blueBell, solitude } from "@/styles/theme/variables";
+import { blueBell } from "@/styles/theme/variables";
 
 const BACK_SCALE = 1.1;
 const FRONT_SCALE = 1.05;
@@ -136,6 +136,8 @@ function ProjectItem({
         <AppLink
           href={APP_ROUTES.PROJECT_DETAIL.INDEX + _slug}
           className="absolute-cover"
+          target="_self"
+          prefetch={false}
         />
       )}
 

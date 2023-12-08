@@ -6,13 +6,18 @@ import Section from "@/components/Section";
 import AppEvent from "@/modules/constants/event_names";
 import { sendEvent } from "@/plugins/utils/events";
 import personalInfo from "public/data/about.json";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import SideNav from "@/components/SideNav";
+import { UIContext } from "@/components/contexts/UIProvider";
 
 function AboutPage(props) {
+  const { handlePageLoaded } = useContext(UIContext);
+
   const init = async () => {
     // wait for extra stuff
-    sendEvent(AppEvent.PAGE_LOADED);
+    console.log("[Aboutpage] init");
+    // sendEvent(AppEvent.PAGE_LOADED);
+    handlePageLoaded();
   };
 
   useLayoutEffect(() => {

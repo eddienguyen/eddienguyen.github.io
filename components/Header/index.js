@@ -23,6 +23,7 @@ import Text3D from "./Text3D";
 import AppLink from "@/components/AppLink";
 import RunningTexts from "./RunningTexts";
 import { UIContext } from "../contexts/UIProvider";
+import AppEvent from "@/modules/constants/event_names";
 
 // import { Container } from "theme/grid";
 // import { Background, Intro, IntroBanner } from "./Header.style";
@@ -31,7 +32,7 @@ import { UIContext } from "../contexts/UIProvider";
 // import { blueDeepSky } from "theme/variables";
 
 function Header(props) {
-  const { loadingState } = useContext(UIContext);
+  const { loadingState, isResizing } = useContext(UIContext);
   const [isInit, setIsInit] = useState(false);
   const persHolder = useRef();
   const galleryMediaRef = useRef();
@@ -55,6 +56,34 @@ function Header(props) {
     const _rotateY = y * (MAX_ROTATE_Y * 2) + -MAX_ROTATE_Y; // * (max - min) + min
     const _perspective = window.innerWidth * 5 + "px"; // long used formula, 5 = some number
     persHolder.current.style.transform = `perspective(${_perspective}) rotateX(${_rotateY}deg) rotateY(${_rotateX}deg)`;
+  };
+
+  // TODO: reinit when back to homepage 
+  const init = () => {
+    const backgroundNode = backgroundRef.current;
+
+    if (isInit) return;
+    // capture on resize
+    const _rect = galleryMediaRef.current?.getBoundingClientRect();
+    _path.current.top = _rect.top;
+    _path.current.bot = window.innerHeight - _rect.bottom;
+    _path.current.left = _rect.left;
+    _path.current.right = window.innerWidth - _rect.right;
+
+    let timeline = new gsap.timeline({
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: "top",
+        end: "+=500px",
+        scrub: true,
+        // markers: true,
+      },
+    });
+    timeline.from(backgroundNode, {
+      clipPath: `inset(${_path.current.top}px ${_path.current.right}px ${_path.current.bot}px ${_path.current.left}px)`,
+    });
+
+    setIsInit(true);
   };
 
   // useEffect(() => {
@@ -85,41 +114,14 @@ function Header(props) {
   useEffect(() => {
     // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
-    const backgroundNode = backgroundRef.current;
-    const init = () => {
-      if (isInit) return;
-      // capture on resize
-      const _rect = galleryMediaRef.current?.getBoundingClientRect();
-      _path.current.top = _rect.top;
-      _path.current.bot = window.innerHeight - _rect.bottom;
-      _path.current.left = _rect.left;
-      _path.current.right = window.innerWidth - _rect.right;
-
-      let timeline = new gsap.timeline({
-        scrollTrigger: {
-          trigger: document.documentElement,
-          start: "top",
-          end: "+=500px",
-          scrub: true,
-          // markers: true,
-        },
-      });
-      timeline.from(backgroundNode, {
-        clipPath: `inset(${_path.current.top}px ${_path.current.right}px ${_path.current.bot}px ${_path.current.left}px)`,
-      });
-
-      setIsInit(true);
-    };
-
-    if (loadingState === "init") {
+    // first time running ?
+    if (loadingState === AppEvent.DONE_INIT) {
       setIsInit(false);
-      init();
-    }
-    if (loadingState === "done") {
+
       init();
     }
     return () => {
-      gsap.killTweensOf(backgroundNode);
+      gsap.killTweensOf(backgroundRef.current);
     };
   }, [loadingState]);
 
