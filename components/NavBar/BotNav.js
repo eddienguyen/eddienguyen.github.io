@@ -86,7 +86,7 @@ function BotNav({
           height: ${sideNavW}px;
         }
         .progress {
-          transition: width 0.2s ease-in 0.1s;
+          transition: width 0.2s ease-in 0.05s;
           will-change: width;
         }
         .btn--esc {
