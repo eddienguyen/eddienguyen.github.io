@@ -44,15 +44,11 @@ function UIProjectDetail({ data = {}, slug, ...props }) {
 
     // let pinWrap = containerRef.current;
     // let pinWrapWidth = pinWrap.offsetWidth;
-    // let horizontalScrollLength = pinWrapWidth - window.innerWidth;
     // let scrollContainer = document.querySelector("[data-scroller-container]");
     // let containerWidth = scrollContainer.offsetWidth;
 
     let scrollContainer =
       document && document.querySelector("[data-scroller-container]");
-
-    // console.log('containerWidth', containerWidth);
-    // console.log('horizontalScrollLength', horizontalScrollLength);
 
     scroller.current = gsap.to(containerRef.current, {
       x: -horizontalLength,
@@ -65,7 +61,6 @@ function UIProjectDetail({ data = {}, slug, ...props }) {
         invalidateOnRefresh: true,
         // start: "left left",
         end: () => "+=" + horizontalLength,
-        markers: true,
         onUpdate: (self) => {
           setScrollProgress(self.progress.toFixed(2));
         },
@@ -96,12 +91,7 @@ function UIProjectDetail({ data = {}, slug, ...props }) {
   useEffect(() => {
     init();
 
-    return () => {
-      // TODO: remove all gsap instance here ?
-      // if (containerRef.current) {
-      // gsap.killTweensOf(containerRef.current);
-      // }
-    };
+    return () => {};
   }, []);
 
   useEffect(() => {
