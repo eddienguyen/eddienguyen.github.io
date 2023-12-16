@@ -2,6 +2,9 @@
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 
+// TODO: 
+// - layout toggle: list/masonry
+// - external post / original post
 function StoriesPage(props) {
   return (
     <main className="stories-page">

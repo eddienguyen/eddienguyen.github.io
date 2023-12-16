@@ -7,12 +7,12 @@ import { useRouter } from "next/navigation";
 
 import Section from "@/components/Section";
 import Container from "@/components/Container";
-import AppEvent from "@/modules/constants/event_names";
 import Background from "@/components/Background";
 import BotNav from "@/components/NavBar/BotNav";
 import { headerHeight, sideNavW } from "@/styles/theme/variables";
 import { UIContext } from "@/components/contexts/UIProvider";
 
+// TODO: external link
 function UIProjectDetail({ data = {}, slug, ...props }) {
   const router = useRouter();
 

@@ -7,7 +7,11 @@
             "video": "https://youtu.be/3GNcm8XloWg?si=cf1Qo3ig9_ADN11P",
             "videoType": "YOUTUBE",
             "description": "KY QUAN SAN PEAK\n#adventure #trekking #vietnam #sapa #laocai \n👉 Camera: Gopro Hero 7 Black\n\n––––––––––––––––––––––––––––––\nRaising Me Higher by Ahjay Stelino",
-            "permalink": "https://youtu.be/3GNcm8XloWg?si=cf1Qo3ig9_ADN11P"
+            "permalink": "https://youtu.be/3GNcm8XloWg?si=cf1Qo3ig9_ADN11P",
+            "slug": "",
+            "tags": [
+                "social"
+            ]
         },
         {
             "title": "Instagram post",
@@ -16,7 +20,24 @@
             "video": "",
             "videoType": "",
             "description": "@hentai.shinshi.doctor",
-            "permalink": "https://www.instagram.com/p/CzSOkZ8ydXa/"
+            "permalink": "https://www.instagram.com/p/CzSOkZ8ydXa/",
+            "slug": "",
+            "tags": [
+                "social"
+            ]
+        },
+        {
+            "title": "First post",
+            "date": "11/12/2023",
+            "thumbnail": "img/examples/ft-1.jpg",
+            "video": "",
+            "videoType": "",
+            "description": "first post ever created on this folio",
+            "permalink": "",
+            "slug": "first-post",
+            "tags": [
+                "social"
+            ]
         }
     ]
 }

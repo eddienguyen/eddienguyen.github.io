@@ -1,4 +1,8 @@
 const path = require("path");
+// next-compose-plugins withPlugins for more plugin compose
+const withBundleanalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "TRUE"
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,4 +25,6 @@ const nextConfig = {
 
 };
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
+
+module.exports = withBundleanalyzer(nextConfig);

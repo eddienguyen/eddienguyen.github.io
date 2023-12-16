@@ -10,6 +10,7 @@
     "export": "next export",
     "lint": "next lint",
     "predeploy": "npm run build",
+    "analyze": "ANALYZE=true npm run build",
     "deploy": "gh-pages -b master -d build",
     "test": "node scripts/test.js --env=jsdom",
     "push": "npm version patch && git push",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@next/bundle-analyzer": "^14.0.4",
     "gsap": "^3.12.2",
     "keen-slider": "^6.8.6",
     "locomotive-scroll": "^5.0.0-beta.9",
