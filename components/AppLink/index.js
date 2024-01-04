@@ -6,7 +6,7 @@ import Link from "next/link";
 import { forwardRef } from "react";
 
 const CustomComponent = forwardRef((props, ref) => (
-  <a className="app-link" href={props.link} ref={ref} {...props}>
+  <a className={`${props.className} app-link`} href={props.link} ref={ref} {...props}>
     <style jsx>{`
       .app-link {
         display: ${props.display};
@@ -35,7 +35,7 @@ const AppLink = ({
       target={target}
       ref={ref}
       {...props}
-      // className={_class}
+      className={_class}
     >
       {children}
     </CustomComponent>
@@ -47,8 +47,8 @@ const AppLink = ({
         display={display}
         ref={ref}
         target={target}
-        // className={_class}
-        className={props.className}
+        className={_class}
+        // className={props.className}
       >
         {children}
       </CustomComponent>

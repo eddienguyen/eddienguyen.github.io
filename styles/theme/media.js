@@ -1,17 +1,23 @@
 // import { css } from 'styled-components';
 
 /** devices width definition */
+/** inherited froom tailwind breakpoints */
 /**
- * extra small : phones, less than 768px
- * small : tablets, 768px and up
- * medium : desktops, 992px and up
- * large : large desktops, 1170px and up
+ * extra small : phones, less than 659px
+ * small : tablets, 640px and up
+ * medium : large tablet, 768px and up
+ * large : desktops, 1024px and up
+ * extralarge : extra large desktops, 1280px and up
+ * extralarge2 : extra large desktops, 1536px and up
  */
 const sizes = {
-  phone: 376,
-  tablet: 768,
-  desktop: 992,
-  large: 1170,
+  xs: 0,
+  sm: 640,
+  md: 768,
+  // md2: 820,
+  lg: 1024,
+  xl: 1280,
+  xl2: 1536,
 };
 
 // pass in multiple arguments when call this function, so that it will css with the value of args

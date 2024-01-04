@@ -2,7 +2,8 @@ import { localPlayfair, localMontserrat } from "./fonts";
 import "keen-slider/keen-slider.min.css";
 import "@/styles/global.scss";
 import personalInfo from "public/data/about.json";
-import NavBar from "@/components/NavBar";
+// import { Viewport } from "next/dist/lib/metadata/types/extra-types";
+
 export const metadata = {
   title: {
     template: "EddieNguyen | %s",
@@ -63,6 +64,7 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
+  viewport: "width=device-width, initial-scale=1,viewport-fit=cover",
 
   // icons: { // checks https://nextjs.org/docs/app/api-reference/functions/generate-metadata#icons
   //   icon: '/icon.png',
@@ -75,16 +77,20 @@ export const metadata = {
   // },
 };
 
-export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" }, // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
-  ],
-  colorScheme: "light dark",
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
+// TODO: viewport-fit:cover for notch https://github.com/vercel/next.js/discussions/46542
+/** @type {import("next/dist/lib/metadata/types/extra-types").Viewport} */
+// export const viewport = {
+//   // themeColor: [
+//   //   { media: "(prefers-color-scheme: light)", color: "white" },
+//   //   { media: "(prefers-color-scheme: dark)", color: "black" }, // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+//   // ],
+//   // colorScheme: "light dark",
+//   width: "device-width",
+//   initialScale: 1,
+//   maximumScale: 1,
+//   viewportFit: "cover",
+//   userScalable: false
+// };
 
 export default function RootLayout({
   // Layouts must accept a children prop.

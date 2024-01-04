@@ -1,6 +1,6 @@
 "use client";
 
-import { headerIndex, sideNavW, color } from "@/styles/theme/variables";
+import { headerIndex, sideNavW } from "@/styles/theme/variables";
 import { useContext, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,12 +28,6 @@ function SideNav(props) {
     e.preventDefault();
 
     gsap.to(window, { scrollTo: 0, duration: 2, ease: "sine.inOut" });
-  };
-
-  const handleBurgerClick = () => {
-    setVisibleMenu(!visibleMenu);
-    // setOpenMenu(!openMenu);
-    // setVisibleDrawer(false);
   };
 
   useLayoutEffect(() => {
@@ -105,19 +99,6 @@ function SideNav(props) {
             <IconArrowUp className="w-4" />
           </button>
         </div>
-
-        <button
-          className="btnMenu burger absolute btn-icon lg bg-primary-black cursor-pointer"
-          onClick={handleBurgerClick}
-        >
-          <span className="hamburgerMenu block mx-auto w-6 h-5">
-            <span
-              className={`bar ${
-                visibleMenu ? "animate bg-transparent" : "bg-primary-white"
-              } relative block `}
-            />
-          </span>
-        </button>
       </div>
 
       <style jsx>{`
@@ -137,63 +118,6 @@ function SideNav(props) {
           transform: rotate(-90deg) translateY(-${sideNavW / 2}px);
           font-size: 10px;
           letter-spacing: 0.5em;
-        }
-
-        // burger
-        .btnMenu {
-          top: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-
-          .hamburgerMenu {
-            z-index: 3;
-            transition: all 0.3s;
-          }
-
-          .bar {
-            top: 50%;
-            height: 2px;
-            width: 100%;
-            border-radius: 20px;
-            transition: all 0ms 100ms;
-
-            &.animate {
-              // background: transparent;
-
-              &:before {
-                bottom: 0;
-                transform: rotate(-45deg);
-                transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
-              }
-              &:after {
-                top: 0;
-                transform: rotate(45deg);
-                transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
-              }
-            }
-            &:before,
-            &:after {
-              content: "";
-              position: absolute;
-              background: ${color.white};
-              width: 100%;
-              right: 0;
-              height: 2px;
-              border-radius: inherit;
-            }
-            &:before {
-              bottom: 7px;
-              transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
-                transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
-            }
-            &:after {
-              top: 7px;
-              transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
-                transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
-            }
-          }
         }
       `}</style>
       <style jsx global>{`

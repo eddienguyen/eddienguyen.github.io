@@ -1,5 +1,5 @@
 "use client";
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 import Container from "components/Container";
 import NavItem from "./NavItem";
 import ScrollingNav from "./ScrollingNav";
@@ -8,6 +8,7 @@ import NavBrand from "./NavBrand";
 import APP_ROUTES from "@/modules/constants/app_routes";
 import { UIContext } from "../contexts/UIProvider";
 import { IconDownload } from "@/styles/theme/icons";
+import { color } from "@/styles/theme/variables";
 import asset from "@/plugins/assets";
 import profileInfo from "public/data/about.json";
 import navMenuItems from "@/modules/constants/menu";
@@ -31,15 +32,16 @@ class NavBar extends Component {
     };
     // bind functions
     this.updateNavOpacity = this.updateNavOpacity.bind(this);
+    this.handleBurgerClick = this.handleBurgerClick.bind(this);
   }
-  componentDidMount() {
-    // this.updateNavOpacity();
-    // window.addEventListener("scroll", this.updateNavOpacity);
-  }
+  // componentDidMount() {
+  // this.updateNavOpacity();
+  // window.addEventListener("scroll", this.updateNavOpacity);
+  // }
 
-  componentWillUnmount() {
-    // window.removeEventListener("scroll", this.updateNavOpacity);
-  }
+  // componentWillUnmount() {
+  // window.removeEventListener("scroll", this.updateNavOpacity);
+  // }
 
   // componentDidUpdate(prevProps, prevState) {
 
@@ -80,54 +82,42 @@ class NavBar extends Component {
     this.setState({ navOpacity });
   }
 
+  handleBurgerClick = () => {
+    if (this.context.setVisibleMenu) {
+      setVisibleMenu(!visibleMenu);
+    }
+    // setOpenMenu(!openMenu);
+    // setVisibleDrawer(false);
+  };
+
   render() {
-    const { visibleMenu } = this.context;
+    const { visibleMenu, device } = this.context;
     const defaultPos = this.props.position;
     return (
       <div>
         <DefaultNav position={defaultPos}>
           <Container>
             <div className="grid grid-cols-6">
-              <div className="col-span-1">
+              <div className="col-span-1 flex">
+                <button
+                  className="btnMenu burger btn-icon lg bg-primary-black cursor-pointer"
+                  onClick={this.handleBurgerClick}
+                >
+                  <span className="hamburgerMenu block mx-auto w-6 h-5">
+                    <span
+                      className={`bar ${
+                        visibleMenu
+                          ? "animate bg-transparent"
+                          : "bg-primary-white"
+                      } relative block `}
+                    />
+                  </span>
+                </button>
                 <NavBrand className="navbar__logo" />
               </div>
-              <div className="menu col-span-5">
-                {navMenuItems.length > 0 &&
-                  navMenuItems.map((eachItem, index) => (
-                    <NavItem
-                      href={eachItem.path}
-                      className="uppercase"
-                      key={index}
-                    >
-                      {eachItem.name}
-                    </NavItem>
-                  ))}
-                {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
-                  About
-                </NavItem>
-                <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
-                  Projects
-                </NavItem>
-                <NavItem href={APP_ROUTES.STORIES.INDEX} className="uppercase">
-                  Stories
-                </NavItem>
-                <NavItem
-                  href={APP_ROUTES.PLAYGROUND.INDEX}
-                  className="uppercase"
-                >
-                  Playground
-                </NavItem> */}
-                <NavItem
-                  href={asset(profileInfo.pdf)}
-                  className="uppercase"
-                  target="_blank"
-                  directLink
-                  rel="noopener"
-                >
-                  <IconDownload className="text-base mr-3 align-text-bottom" />
-                  My cv
-                </NavItem>
-              </div>
+              {["lg", "xl", "xl2"].includes(device) && (
+                <MMDesktopMenu className="" />
+              )}
             </div>
           </Container>
         </DefaultNav>
@@ -167,9 +157,106 @@ class NavBar extends Component {
             </NavItem>
           </Container>
         </ScrollingNav>
+
+        <style jsx>{`
+          // burger
+          .btnMenu {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            .hamburgerMenu {
+              z-index: 3;
+              transition: all 0.3s;
+            }
+
+            .bar {
+              top: 50%;
+              height: 2px;
+              width: 100%;
+              border-radius: 20px;
+              transition: all 0ms 100ms;
+
+              &.animate {
+                // background: transparent;
+
+                &:before {
+                  bottom: 0;
+                  transform: rotate(-45deg);
+                  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+                }
+                &:after {
+                  top: 0;
+                  transform: rotate(45deg);
+                  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+                }
+              }
+              &:before,
+              &:after {
+                content: "";
+                position: absolute;
+                background: ${color.white};
+                width: 100%;
+                right: 0;
+                height: 2px;
+                border-radius: inherit;
+              }
+              &:before {
+                bottom: 7px;
+                transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+              }
+              &:after {
+                top: 7px;
+                transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+              }
+            }
+          }
+        `}</style>
       </div>
     );
   }
 }
 
-export default NavBar;
+export const DesktopMenu = (props) => (
+  <div className={`${props.className} menu lg:col-span-5`}>
+    {navMenuItems.length > 0 &&
+      navMenuItems.map((eachItem, index) => (
+        <NavItem href={eachItem.path} className="uppercase" key={index}>
+          {eachItem.name}
+        </NavItem>
+      ))}
+    {/* <NavItem href={APP_ROUTES.ABOUT.INDEX} className="uppercase">
+        About
+      </NavItem>
+      <NavItem href={APP_ROUTES.PROJECTS.INDEX} className="uppercase">
+        Projects
+      </NavItem>
+      <NavItem href={APP_ROUTES.STORIES.INDEX} className="uppercase">
+        Stories
+      </NavItem>
+      <NavItem
+        href={APP_ROUTES.PLAYGROUND.INDEX}
+        className="uppercase"
+      >
+        Playground
+      </NavItem> */}
+    <NavItem
+      href={asset(profileInfo.pdf)}
+      className="uppercase"
+      target="_blank"
+      directLink
+      rel="noopener"
+    >
+      <IconDownload className="text-base mr-3 align-text-bottom" />
+      My cv
+    </NavItem>
+  </div>
+);
+
+export const MMDesktopMenu = memo(DesktopMenu);
+const MemoizedNavBar = memo(NavBar);
+export default MemoizedNavBar;

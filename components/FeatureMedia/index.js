@@ -66,7 +66,7 @@ function FeatureMedia(props) {
           <div
             className="media__right absolute left-0 top-0 w-full grid grid-cols-12"
             data-scroll
-            data-scroll-speed="0.8"
+            data-scroll-speed="0.7"
           >
             <div className="img__holder relative inline-block">
               {renderImage(asset("/img/examples/DSC03209.jpeg"))}

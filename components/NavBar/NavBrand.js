@@ -9,7 +9,8 @@ function NavBrand(props) {
       className={`nav-brand font-serif text-blue-deep-sky ${_class}`}
     >
       <h1 className="nav-brand__text text-3xl font-bold">
-        <span className="text--lg">E</span>
+        {/* <span className="text--lg">E</span> */}
+
         <span className="text--sm">dd.</span>
         {/* <svg
           version="1.1"

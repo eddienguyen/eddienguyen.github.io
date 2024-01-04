@@ -35,7 +35,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer className="footer py-8 bg-transparent text-xs ">
+      <footer className="footer py-4 md:py-8 bg-transparent text-xs">
         <Container className="text-center">
           <h2
             className="brand mb-9 text-4xl font-bold text-blue-deep-sky font-serif"

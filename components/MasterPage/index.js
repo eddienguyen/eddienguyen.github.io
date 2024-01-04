@@ -23,10 +23,10 @@ function ClientMasterPage({ direction = "vertical", ...props }) {
         {/* <Background /> */}
         {props.children}
         {direction === "vertical" && <Footer />}
-        <div className="block-layout fixed flex z-[999] xl:hidden xl:-z-10 w-screen h-screen top-0 left-0 bg-primary-black justify-center items-center text-center text-white p-3">
+        {/* <div className="block-layout fixed flex z-[999] xl:hidden xl:-z-10 w-screen h-screen top-0 left-0 bg-primary-black justify-center items-center text-center text-white p-3">
           Please continue on desktop for my responsive version is under
           construction
-        </div>
+        </div> */}
       </UIProvider>
       <style jsx global>{`
         .block-layout {

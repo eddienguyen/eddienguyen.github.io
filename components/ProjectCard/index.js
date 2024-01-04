@@ -83,7 +83,7 @@ function ProjectCard({ data = {}, ...props }) {
       onMouseLeave={handleMouseLeave}
     >
       <div className="media relative">
-        <div className="media__bg scale-ratio" />
+        <div className="media__bg scale-ratio bg-blue-periwinkle" />
         <div className="media__main absolute">{renderMedia()}</div>
       </div>
 
@@ -156,9 +156,6 @@ function ProjectCard({ data = {}, ...props }) {
         .media {
           flex: 0 0 62%;
           opacity: 0.4;
-        }
-        .media__bg {
-          background-color: ${bluePeriwinkle};
         }
         .media__main {
           left: 50%;

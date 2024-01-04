@@ -24,6 +24,7 @@ import AppLink from "@/components/AppLink";
 import RunningTexts from "./RunningTexts";
 import { UIContext } from "../contexts/UIProvider";
 import AppEvent from "@/modules/constants/event_names";
+import DeviceHelper from "@/plugins/utils/DeviceHelper";
 
 // import { Container } from "theme/grid";
 // import { Background, Intro, IntroBanner } from "./Header.style";
@@ -34,6 +35,7 @@ import AppEvent from "@/modules/constants/event_names";
 function Header(props) {
   const { loadingState, isResizing } = useContext(UIContext);
   const [isInit, setIsInit] = useState(false);
+  const [enableMouseMove, setEnableMouseMove] = useState(false);
   const persHolder = useRef();
   const galleryMediaRef = useRef();
   const backgroundRef = useRef();
@@ -50,19 +52,27 @@ function Header(props) {
   });
 
   const manageMouseMove = (event) => {
-    const x = event.clientX / persHolder.current.offsetWidth;
-    const y = event.pageY / persHolder.current.offsetHeight;
-    const _rotateX = x * (MAX_ROTATE_X * 2) + -MAX_ROTATE_X; // * (max - min) + min
-    const _rotateY = y * (MAX_ROTATE_Y * 2) + -MAX_ROTATE_Y; // * (max - min) + min
-    const _perspective = window.innerWidth * 5 + "px"; // long used formula, 5 = some number
-    persHolder.current.style.transform = `perspective(${_perspective}) rotateX(${_rotateY}deg) rotateY(${_rotateX}deg)`;
+    if (enableMouseMove) {
+      const x = event.clientX / persHolder.current.offsetWidth;
+      const y = event.pageY / persHolder.current.offsetHeight;
+      const _rotateX = x * (MAX_ROTATE_X * 2) + -MAX_ROTATE_X; // * (max - min) + min
+      const _rotateY = y * (MAX_ROTATE_Y * 2) + -MAX_ROTATE_Y; // * (max - min) + min
+      const _perspective = window.innerWidth * 5 + "px"; // long used formula, 5 = some number
+      persHolder.current.style.transform = `perspective(${_perspective}) rotateX(${_rotateY}deg) rotateY(${_rotateX}deg)`;
+    } else {
+      event.preventDefault();
+    }
   };
 
-  // TODO: reinit when back to homepage 
+  // TODO: reinit when back to homepage
   const init = () => {
     const backgroundNode = backgroundRef.current;
 
     if (isInit) return;
+
+    const sys = DeviceHelper.checkOS();
+    setEnableMouseMove(sys.os !== "iOS");
+
     // capture on resize
     const _rect = galleryMediaRef.current?.getBoundingClientRect();
     _path.current.top = _rect.top;
