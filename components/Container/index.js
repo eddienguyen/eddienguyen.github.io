@@ -18,7 +18,7 @@ function Container(props) {
           // padding: 30px 120px 0 120px;
           padding: 0 10px 0 10px;
 
-          @media all and (min-width: ${sizes.tablet}px) {
+          @media all and (min-width: ${sizes.md}px) {
             padding: 0 30px 0 30px;
           }
         }
