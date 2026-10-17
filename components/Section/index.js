@@ -9,10 +9,11 @@ function Section(props) {
       {props.children}
       <style jsx>{`
         .app-section {
-          // background-color: ${black}; // set background here cause the after pseudo in anchor not showing when hover
-          &.first {
-            padding-top: ${headerHeight}px;
-          }
+          /* background-color: ${black}; */
+          /* set background here cause the after pseudo in anchor not showing when hover */
+        }
+        .app-section.first {
+          padding-top: ${headerHeight}px;
         }
       `}</style>
     </section>

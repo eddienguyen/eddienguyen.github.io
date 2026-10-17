@@ -1,7 +1,5 @@
 "use client";
-// import Features from "@/components/Features";
-// import Services from "@/components/Services";
-// import { ParallaxProvider } from "react-scroll-parallax";
+
 import { useContext, useLayoutEffect } from "react";
 
 import Header from "@/components/Header";
@@ -44,8 +42,7 @@ export default function Home({ children }) {
       <SectionViewStories />
       <SectionContactMe />
       <SectionContactAdress />
-      {/* <Features /> */}
-      {/* <Services /> */}
+
       {children}
     </main>
   );

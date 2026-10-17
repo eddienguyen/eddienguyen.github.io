@@ -159,21 +159,16 @@ function UIProvider({ direction = "vertical", ...props }) {
   }, [visibleMenu]);
 
   useEffect(() => {
-    // this load just once on every horizontal page => reinit ?
-
-    handleResize();
-
+    // Register resize listener and mark UIProvider as rendered.
+    // handleResize() is intentionally NOT called here — the state machine
+    // drives PAGE_RESIZING via INIT → handleResize() after the page reports
+    // loaded. Calling it here causes a race that leaves state stuck at "resizing".
     window.addEventListener("resize", handleResize);
-
-    // mounted ?
     ready();
 
-    // cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
       console.log("[UI] removing scroll", scroll);
-      // scroll && scroll.destroy();
-      // removeListener();
     };
   }, []);
 
