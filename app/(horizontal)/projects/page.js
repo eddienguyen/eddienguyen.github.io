@@ -303,10 +303,6 @@ function ProjectsPage(props) {
 
   return (
     <main className="projects-page relative" ref={mainRef}>
-      {/* <button className="btn fixed z-[800]" onClick={fakeUpdateList}>
-        test
-      </button> */}
-
       <Background />
       <Section className="first page__holder h-screen w-screen overflow-hidden">
         <Container className="h-full">
@@ -357,7 +353,6 @@ function ProjectsPage(props) {
           </div>
         </Container>
       </Section>
-      {/* bottomnav */}
       <BotNav
         className="fixed bottom-0 left-0 right-0"
         onGoLeftClick={handleSlideToFirstClick}
