@@ -76,6 +76,9 @@ function ProjectItem({
       y: y2,
       // scale: FRONT_SCALE,
       // autoAlpha: 0.5,
+      duration: 0.6,
+      ease: "power2.out",
+      overwrite: "auto"
     });
     // send index to parent
     if (setCurrentHover) {
@@ -93,14 +96,19 @@ function ProjectItem({
     const node = mainRef.current;
     const backNode = backRef.current;
     const frontNode = frontRef.current;
+
+    // Center the front figure to by gsap
+    gsap.set(frontRef.current, { xPercent: -50, yPercent: -50 });
+    gsap.set([frontNode, backNode], { willChange: "transform" });
+
     node.addEventListener("mousemove", handleMouseMove);
     node.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       node.removeEventListener("mousemove", handleMouseMove);
       node.removeEventListener("mouseleave", handleMouseLeave);
-      gsap.killTweensOf(backNode);
-      gsap.killTweensOf(frontNode);
+      gsap.set([frontNode,backNode], {willChange: "auto"});
+      gsap.killTweensOf([backNode, frontNode]);
     };
   }, []);
 
@@ -182,7 +190,7 @@ function ProjectItem({
           opacity: 0.8;
         }
         .figure__front {
-          transform: translate(-50%, -50%) scale(${FRONT_SCALE});
+          transform: scale(${FRONT_SCALE});
           opacity: 1;
           transition: opacity 0.7s ease-in, filter 0.4s ease-in;
         }

@@ -12,6 +12,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] — 2026-10-31
+
+### Fixed
+- `ProjectItem` hover animation — `frontRef` figure was mis-positioned; replaced CSS `translate(-50%, -50%)` with `gsap.set(frontRef, { xPercent: -50, yPercent: -50 })` to keep GSAP in full control of the transform
+- Added `duration: 0.6`, `ease: "power2.out"`, and `overwrite: "auto"` to the `handleMouseMove` tween for smoother, conflict-free cursor tracking
+- Applied `willChange: "transform"` on mount and reset to `"auto"` on cleanup to improve GPU compositing during hover
+- Consolidated `gsap.killTweensOf` to kill both `backRef` and `frontRef` in a single call on unmount
+
+### Changed
+- Remove leftover debug `<button onClick={fakeUpdateList}>test</button>` comment block from projects page
+- Remove stale `{/* bottomnav */}` comment from projects page
+
+### Fixed (CI)
+- Upgrade `actions/configure-pages` v4 → v5 and `actions/deploy-pages` v3 → v4 to resolve Node.js 20 deprecation warnings on GitHub Actions runners
+- Upgrade CI Node version 18 → 20
+- Remove `static_site_generator: next` hint from `configure-pages` step (caused config parse warning with `withBundleanalyzer` wrapper)
+
+---
+
 ## [2.0.0] — 2024-10-04
 
 ### Added
