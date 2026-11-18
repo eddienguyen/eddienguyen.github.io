@@ -1,0 +1,53 @@
+[10:42:28.001] [INFO] Storybook upgrade - v10.2.0
+[10:42:28.003] [INFO] detect-projects-spinner-start: Detecting projects...
+[10:42:28.004] [DEBUG] Finding Storybook projects...
+[10:42:28.222] [DEBUG] Found 1 Storybook projects
+[10:42:28.222] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[10:42:28.223] [DEBUG] Getting Storybook data...
+[10:42:28.223] [DEBUG] Getting Storybook info...
+[10:42:28.272] [DEBUG] Loading main config...
+[10:42:28.272] [DEBUG] Getting stories paths...
+[10:42:28.282] [DEBUG] Getting package manager...
+[10:42:28.728] [DEBUG] Getting package.json info for /Users/eddienguyen/Documents/cw/Web-frameworks/eddienguyen.github.io/package.json...
+[10:42:28.728] [DEBUG] Getting Storybook version...
+[10:42:28.728] [DEBUG] Detecting CSF factory usage...
+[10:42:28.738] [DEBUG] /.storybook - Validating before version... 7.6.3
+[10:42:28.738] [DEBUG] /.storybook - Validating upgrade compatibility...
+[10:42:28.738] [DEBUG] /.storybook - Fetching NPM version information...
+[10:42:28.739] [DEBUG] Getting CLI versions from NPM for storybook...
+[10:42:28.739] [DEBUG] Executing command: npm info storybook version
+[10:42:28.742] [DEBUG] Getting CLI versions from NPM for storybook@next...
+[10:42:28.742] [DEBUG] Executing command: npm info storybook@next version
+[10:42:29.531] [DEBUG] /.storybook - Evaluating blockers...
+[10:42:29.540] [DEBUG] Getting installed version for @storybook/experimental-addon-test...
+[10:42:29.540] [DEBUG] Executing command: npm ls --json --depth=99 2>/dev/null
+[10:42:30.338] [DEBUG] Executing command: npm ls --json --depth=0 2>/dev/null
+[10:42:30.923] [DEBUG] Error finding installations for @storybook/experimental-addon-test: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0' '2>/dev/null'
+
+{
+  "version": "1.2.1",
+  "name": "portfolio"
+}
+[10:42:30.923] [DEBUG] No installations found for @storybook/experimental-addon-test
+[10:42:30.923] [INFO] detect-projects-spinner-stop: 1 project detected
+[10:42:30.924] [DEBUG] Found 1 valid projects and 0 error projects
+[10:42:30.924] [INFO] Upgrading from [1m7.6.3[22m to [1m10.2.0[22m
+[10:42:30.925] [ERROR] Blockers detected
+
+Storybook has found potential blockers that need to be resolved before upgrading:
+
+[33mMajor Version Gap Detected[39m
+
+Your Storybook version (v7.6.3) is more than one major version behind the target release (v10.2.0). Please upgrade one major version at a time.
+
+You can upgrade to version 8 by running:
+[36mnpx storybook@8 upgrade[39m
+
+Affected projects: /.storybook
+
+More information: https://storybook.js.org/docs/8/migration-guide?ref=upgrade
+
+---
+
+After addressing this, you can try running the upgrade command again. You can also rerun the upgrade command with the [36m--force[39m flag to skip the blocker check and to proceed with the upgrade.
+[10:42:30.929] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
